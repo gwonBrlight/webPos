@@ -1,13 +1,13 @@
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $a=$_POST['a'];
-mysql_query("DELETE FROM supplier WHERE id='$a'");
+mysqli_query($result,"DELETE FROM supplier WHERE id='$a'");
 header ("location: supplier.php");
-mysql_close($con);
+mysqli_close($con);
 ?>

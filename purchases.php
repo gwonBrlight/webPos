@@ -72,17 +72,17 @@ To: <input name="dayto" type="text" class="tcal" />&nbsp;&nbsp;&nbsp;
 <form action="purchasereportindi.php" method="post" style="color:#FF00FF;">
 Members Name: 
 <?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
-$name= mysql_query("select * from supplier");
+mysqli_select_db($con,"inventory");
+$name= mysqli_query(mysqli_select_db($con,"inventory"),"select * from supplier");
 echo '<select name="daycusname"';
 echo '<option>Select Supplier</option>';
- while($res= mysql_fetch_assoc($name))
+ while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option>';
@@ -91,7 +91,7 @@ echo'</option>';
 }
 echo'</select>';
 
-mysql_close($con)
+mysqli_close($con)
 
 
 ?>

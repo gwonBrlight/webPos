@@ -167,25 +167,25 @@ function formatMoney($number, $fractional=false) {
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysql_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root',"123456");
 						if (!$con)
 						  {
-						  die('Could not connect: ' . mysql_error());
+						  die('Could not connect: ' . mysqli_error($con));
 						  }
 						
-						mysql_select_db("inventory", $con);
+						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id'];
-						$result = mysql_query("SELECT * FROM productlist WHERE id = $member_id");
+						$result = mysqli_query($result,"SELECT * FROM productlist WHERE id = $member_id");
 						
-						$row = mysql_fetch_array($result);
+						$row = mysqli_fetch_array($result);
 						$name=$row["pdesc"];
 						$CODE=$row["pcode"];
 						$qty_left=$row["pleft"];
 						$price=$row["pprice"];
 						$id=$row["id"];
 						$pleft=$row["pleft"];
-						mysql_close($con);
+						mysqli_close($con);
 						}
 						
 						?>
@@ -259,17 +259,17 @@ function formatMoney($number, $fractional=false) {
 		<td width="5%">&nbsp;</td>
       </tr>
 	  <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT * FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($result,"SELECT * FROM stockin where transactioncode = '$f'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
       echo '<tr>';
         echo '<td><div align="center">'.$row['CODE'].'</div></td>';
@@ -290,7 +290,7 @@ while($row = mysql_fetch_array($result))
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?>
     </table>
 	
@@ -313,63 +313,63 @@ mysql_close($con);
 <tr>
     <td><div align="right"><strong>Total Quantity:</strong></div></td>
     <td><?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT sum(qty) FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($result,"SELECT sum(qty) FROM stockin where transactioncode = '$f'");
 
-while($row2 = mysql_fetch_array($result))
+while($row2 = mysqli_fetch_array($result))
   {
       echo '<input name="totalq" type="text" style="text-align:right;" value="'.$row2['sum(qty)'].'" readonly />';
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?></td>
   </tr>
   <tr>
     <td width="1116"><div align="right"><strong>Total:</strong></div></td>
     <td width="168"><?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT sum(total) FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($result,"SELECT sum(total) FROM stockin where transactioncode = '$f'");
 
-while($row2 = mysql_fetch_array($result))
+while($row2 = mysqli_fetch_array($result))
   {
       echo '<input name="totala" type="text" style="text-align:right;" value="'.$row2['sum(total)'].'" readonly />';
 	  $TOTAL=$row2['sum(total)'];
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?></td>
   </tr>
 
 <tr>
     <td><div align="right"><strong>Supplier:</strong></div></td>
     <td><?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
-$name= mysql_query("select * from supplier");
+mysqli_select_db($con,"inventory");
+$name= mysqli_query($name,"select * from supplier");
 echo '<select name="supplierdata">';
 echo '<option>Select Supplier</option>';
- while($res= mysql_fetch_assoc($name))
+ while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option>';
@@ -378,7 +378,7 @@ echo'</option>';
 }
 echo'</select>';
 
-mysql_close($con)
+mysqli_close($con)
 
 
 ?></td>

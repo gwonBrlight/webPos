@@ -1,12 +1,12 @@
 <?php
 
-	$con = mysql_connect("localhost","root","123456");
+	$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 
 $a=$_POST['a'];
 $c=$_POST['c'];
@@ -18,15 +18,15 @@ $f='0';
 	$sql="INSERT INTO productlist (pcode, pdesc, pleft, pprice, psold)
 VALUES ('$a', '$c', '$d', '$e', '$f')";
 
-if (!mysql_query($sql,$con))
+if (!mysqli_query($sql,$con))
   {
-  die('Error: ' . mysql_error());
+  die('Error: ' . mysqli_error($sql,$con));
   }
   header("location: products.php");
 			exit();
 
 
-mysql_close($con)
+mysqli_close($con)
 
 	
 ?>

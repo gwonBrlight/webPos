@@ -21,18 +21,18 @@ border-width: 0px 0px 2px 0px;
 <?php
 							if (isset($_GET['id']))
 							{
-						$con = mysql_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root',"123456");
 						if (!$con)
 						  {
-						  die('Could not connect: ' . mysql_error());
+						  die('Could not connect: ' . mysqli_error($con));
 						  }
 						
-						mysql_select_db("inventory", $con);
+						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id'];
-						$result = mysql_query("SELECT * FROM customer WHERE id = $member_id");
+						$result = mysqli_query($result,"SELECT * FROM customer WHERE id = $member_id");
 						
-						$row = mysql_fetch_array($result);
+						$row = mysqli_fetch_array($result);
 						$id=$row["id"];
 						$name=$row["name"];
 						$lname=$row["lname"];
@@ -82,7 +82,7 @@ border-width: 0px 0px 2px 0px;
 						$c4=$row["cd"];
 						$c5=$row["ce"];
 						$mid=$row["member_id"];
-						mysql_close($con);
+						mysqli_close($con);
 						}
 						
 						?>

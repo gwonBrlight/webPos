@@ -5,8 +5,8 @@ if($_POST)
 
 $q=$_POST['searchword'];
 
-$sql_res=mysql_query("select * from members where FirstName like '%$q%' or LastName like '%$q%' order by member_id LIMIT 5");
-while($row=mysql_fetch_array($sql_res))
+$sql_res=mysqli_query($sql_res,"select * from members where FirstName like '%$q%' or LastName like '%$q%' order by member_id LIMIT 5");
+while($row=mysqli_fetch_array($sql_res))
 {
 $fname=$row['FirstName'];
 $lname=$row['LastName'];

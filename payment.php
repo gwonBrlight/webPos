@@ -1,19 +1,19 @@
 <?php
 session_start();
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $pitsa=date("m/d/Y");
 $amount=$_POST['amount'];
 $code=$_POST['code'];
 $name=$_POST['name'];
 
-$result = mysql_query("SELECT * FROM paycode");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($result,"SELECT * FROM paycode");
+while($row = mysqli_fetch_array($result))
   {
         $fefe=$row['code']; 
   }
@@ -22,8 +22,8 @@ while($row = mysql_fetch_array($result))
 $fgh='P-000'.$sasa;	
 
 
-mysql_query("UPDATE paycode SET code = '$sasa'");
-mysql_query("INSERT INTO creditdatails(amount, datepayment, memberid, ornumber)VALUES('$amount', '$pitsa', '$code', '$fgh')");
+mysqli_query($result,"UPDATE paycode SET code = '$sasa'");
+mysqli_query($result,"INSERT INTO creditdatails(amount, datepayment, memberid, ornumber)VALUES('$amount', '$pitsa', '$code', '$fgh')");
 header("location: individualledger.php?PoNumber=$name&cur_code=$code");
-mysql_close($con);
+mysqli_close($con);
 ?>

@@ -1,17 +1,17 @@
 <?php
 $q=$_GET["q"];
 
-$con = mysql_connect('localhost', 'peter', 'abc123');
+$con = mysqli_connect('localhost', 'peter', 'abc123');
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("ajax_demo", $con);
+mysqli_select_db($con,"ajax_demo");
 
 $sql="SELECT * FROM user WHERE id = '".$q."'";
 
-$result = mysql_query($sql);
+$result = mysqli_query(mysqli_select_db($con,"ajax_demo"),$sql);
 
 echo "<table border='1'>
 <tr>
@@ -22,7 +22,7 @@ echo "<table border='1'>
 <th>Job</th>
 </tr>";
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
   echo "<td>" . $row['FirstName'] . "</td>";
@@ -34,5 +34,5 @@ while($row = mysql_fetch_array($result))
   }
 echo "</table>";
 
-mysql_close($con);
+mysqli_close($con);
 ?>

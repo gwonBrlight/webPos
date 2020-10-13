@@ -1,11 +1,11 @@
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $totalq=$_POST['totalq'];
 $totala=$_POST['totala'];
 $less=$_POST['less'];
@@ -15,11 +15,11 @@ $totalamountdue=$_POST['totalamountdue'];
 $supplierdata=$_POST['supplierdata'];
 $CODE1=$_POST['CODE1'];
 $pitsa=date("m/d/Y");
-mysql_query("INSERT INTO stockinsumarry (code, totalqty, total, less, vsales, vat, totalamountdue, pdate, supplier)
+mysqli_query(mysqli_select_db($con,"inventory"),"INSERT INTO stockinsumarry (code, totalqty, total, less, vsales, vat, totalamountdue, pdate, supplier)
 VALUES ('$CODE1', '$totalq', '$totala', '$less', '$vatableless', '$vat', '$totalamountdue', '$pitsa', '$supplierdata')");
-mysql_query("UPDATE stockin SET supplier = '$supplierdata'
+mysqli_query(mysqli_select_db($con,"inventory"),"UPDATE stockin SET supplier = '$supplierdata'
 WHERE transactioncode = '$CODE1'");
-mysql_close($con);
+mysqli_close($con);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -95,13 +95,13 @@ VAT REG. TIN: 203-384-720-000</span><br />
     <td width="10%"><div align="center" class="style2"><strong>TOTAL</strong></div></td>
   </tr>
   <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 
 function formatMoney($number, $fractional=false) {
     if ($fractional) {
@@ -121,9 +121,9 @@ function formatMoney($number, $fractional=false) {
 
 
 $f=$_POST['CODE1'];
-$result = mysql_query("SELECT * FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($result,"SELECT * FROM stockin where transactioncode = '$f'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
       echo '<tr>';
         echo '<td><div align="center">'.$row['CODE'].'</div></td>';
@@ -141,7 +141,7 @@ while($row = mysql_fetch_array($result))
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 </table>
 <br />

@@ -1,11 +1,11 @@
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $id=$_POST['id'];
 $name=$_POST['name'];
 $mi=$_POST['mi'];
@@ -56,7 +56,7 @@ $c4=$_POST['c4'];
 $c5=$_POST['c5'];
 $abc=$_POST['mid'];
 $qw ="UPDATE customer SET name='$name', lname='$lname', mname='$mi', occupation='$occupation', ddate='$ddate', bday='$bday', address='$address', tel='$pno', mobile='$mno', email='$email', ds='$ds', ns='$ns', cs='$cs', os='$os', aa='$a1', ab='$a2', pro='$a3', proo='$a4', ma='$m1', mb='$m2', mc='$m3', md='$m4', me='$m5', mf='$m6', ca='$c1', cb='$c2', cc='$c3', cd='$c4', ce='$c5', ba='$b1', bb='$b2', bc='$b3', bd='$b4', be='$b5', bf='$b6', bg='$b7', bh='$b8', bi='$b9', bj='$b10', bk='$b11', bl='$b12', bm='$b13', bn='$b14', bo='$b15', bp='$b16', member_id='$abc', birthday='$dayf' WHERE id = '$idb'";
-$result1=mysql_query($qw);
+$result1=mysqli_query($con,$qw);
 header("location: editcustomerprof.php");
-mysql_close($con);
+mysqli_close($con);
 ?> 

@@ -1,11 +1,11 @@
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $podate=$_POST['date'];
 $time=$_POST['time'];
 $txtCombo=$_POST['txtCombo'];
@@ -23,11 +23,11 @@ $sql="INSERT INTO sales (podate, time, code, qty, price, total, mode, kwarta, su
 VALUES
 ('$podate','$time','$txtCombo','$qty','$srp','$total','$mode','$kwarta','$sukli','$paymentsched','$downpayment','$cname')";
 
-if (!mysql_query($sql,$con))
+if (!mysqli_query($sql,$con))
   {
-  die('Error: ' . mysql_error());
+  die('Error: ' . mysqli_error(mysqli_query($sql,$con)));
   }
 header("location: auto.php");
 
-mysql_close($con)
+mysqli_close($con)
 ?>

@@ -1,18 +1,18 @@
 
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
 $mn=$_POST['c'];
  
-$result = mysql_query("SELECT * FROM credit where p_code = '$creditcode'");
+$result = mysqli_query($result,"SELECT * FROM credit where p_code = '$creditcode'");
 
-while($row1 = mysql_fetch_array($result))
+while($row1 = mysqli_fetch_array($result))
 {
 $cover=$row1['coverage'];
 $nu=$row1['nu_payment'];
@@ -21,9 +21,9 @@ $paid=$row1['paid'];
 $totalamount=$cp+$paid;
 $creditpayable=$row1['creditpayable'];
 }
-$resulta = mysql_query("SELECT * FROM customer where code = '$creditcode'");
+$resulta = mysqli_query($resulta,"SELECT * FROM customer where code = '$creditcode'");
 
-while($rows = mysql_fetch_array($resulta))
+while($rows = mysqli_fetch_array($resulta))
 {
 $cus=$rows['name'];
 $cusl=$rows['lname'];
@@ -34,26 +34,26 @@ $cusm=$rows['mname'];
 $ble=$mn+$paid;
 $astig=$cp-$mn; 
 $fop=date("m/d/Y");
-mysql_query("UPDATE credit SET creditpayable = '$astig', paid='$ble'
+mysqli_query($resulta,"UPDATE credit SET creditpayable = '$astig', paid='$ble'
 WHERE p_code = '$creditcode'");
-mysql_query("INSERT INTO creditdatails (amount, datepayment, creditcode, balance)
+mysqli_query($resulta,"INSERT INTO creditdatails (amount, datepayment, creditcode, balance)
 VALUES ('$mn', '$fop', '$creditcode', '$creditpayable')");
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
  
-$result = mysql_query("SELECT * FROM credit where p_code = '$creditcode'");
+$result = mysqli_query($result,"SELECT * FROM credit where p_code = '$creditcode'");
 
-$row1 = mysql_fetch_array($result);
+$row1 = mysqli_fetch_array($result);
 
 echo 'Name:'.$cus.' '.$cusm.' '.$cusl.'<br />';
 echo 'Date Purchase:'.$row1['datepurchese'].'<br />';
@@ -78,7 +78,7 @@ $date = date ("m/d/Y", strtotime("+15 day", strtotime($date)));
 
 
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 <table width="460" border="1">
   <tr>
@@ -87,18 +87,18 @@ mysql_close($con);
     <td><div align="center">Balance</div></td>
   </tr>
   <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
  
-$result = mysql_query("SELECT * FROM creditdatails where creditcode = '$creditcode'");
+$result = mysqli_query($result,"SELECT * FROM creditdatails where creditcode = '$creditcode'");
 
-while($row1 = mysql_fetch_array($result))
+while($row1 = mysqli_fetch_array($result))
 {
   echo '<tr>';
     echo '<td>'.$row1['datepayment'].'</td>';
@@ -110,6 +110,6 @@ while($row1 = mysql_fetch_array($result))
 
 
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 </table>

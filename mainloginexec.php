@@ -11,11 +11,10 @@
 	//Connect to mysql server
 	$link = mysqli_connect("localhost","root","123456");
 	if(!$link) {
-		die('Failed to connect to server: ' . mysql_error());
+		die('Failed to connect to server: ' . mysqli_error($link));
 	}
 	
-	//Select database
-	$db = mysql_select_db(inventory, $link);
+	$db = mysqli_select_db($link, "inventory");
 	if(!$db) {
 		die("Unable to select database");
 	}
@@ -23,30 +22,30 @@
 	//Function to sanitize values received from the form. Prevents SQL injection
 	function clean($str) {
 		$str = @trim($str);
-		if(get_magic_quotes_gpc()) {
+		//if(get_magic_quotes_gpc()) {
 			$str = stripslashes($str);
-		}
-		return mysql_real_escape_string($str);
+		//}
+		//return mysqli_real_escape_string($link,$str);
 	}
 	
 	//Sanitize the POST values
 	
 	
 	// Generate Guid 
-	$login = clean($_POST['username']);
-	$password = clean($_POST['password']);
+	$login = $_POST['username'];//$login = clean($_POST['username']);
+	$password = $_POST['password'];//$password = clean($_POST['password']);
 	
 	
 	//Create query
 	$qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
-	$result=mysql_query($qry);
+	$result=mysqli_query($result,$qry);
 	
 	//Check whether the query was successful or not
 	if($result) {
-		if(mysql_num_rows($result) > 0) {
+		if(mysqli_num_rows($result) > 0) {
 			//Login Successful
 			session_regenerate_id();
-			$member = mysql_fetch_assoc($result);
+			$member = mysqli_fetch_assoc($result);
 			$_SESSION['SESS_MEMBER_ID'] = $member['password'];
 			session_write_close();
 			header("location: home.php");

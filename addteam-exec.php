@@ -1,34 +1,34 @@
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 
 $podate=$_POST['textfield'];
 
 
-$result = mysql_query("SELECT * FROM cuscode");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($result,"SELECT * FROM cuscode");
+while($row = mysqli_fetch_array($result))
   {
         $fefe=$row['code']; 
   }
   $sasa=$fefe+1;
 
 $fgh='C000'.$sasa;	
-mysql_query("UPDATE cuscode SET code = '$sasa'");
+mysqli_query($result,"UPDATE cuscode SET code = '$sasa'");
 
 $sql="INSERT INTO customer (name, member_id)
 VALUES
 ('$podate', '$fgh')";
 
-if (!mysql_query($sql,$con))
+if (!mysqli_query($sql,$con))
   {
-  die('Error: ' . mysql_error());
+  die('Error: ' . mysqli_error($sql));
   }
 header("location: auto.php");
 
-mysql_close($con)
+mysqli_close($con)
 ?>

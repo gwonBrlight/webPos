@@ -408,13 +408,13 @@ function checkNumeric(objName)
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysql_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root',"123456");
 						if (!$con)
 						  {
-						  die('Could not connect: ' . mysql_error());
+						  die('Could not connect: ' . mysqli_error($con));
 						  }
 						
-						mysql_select_db("inventory", $con);
+						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id'];
 						
@@ -422,15 +422,15 @@ function checkNumeric(objName)
 						
 						
 						
-						$result = mysql_query("SELECT * FROM productlist WHERE id = $member_id");
+						$result = mysqli_query($result,"SELECT * FROM productlist WHERE id = $member_id");
 						
-						$row = mysql_fetch_array($result);
+						$row = mysqli_fetch_array($result);
 						$name=$row["pdesc"];
 						$qty_left=$row["pleft"];
 						$price=$row["pprice"];
 						$id=$row["id"];
 						$prcoede=$row["pcode"];
-						mysql_close($con);
+						mysqli_close($con);
 						}
 						
 						?>
@@ -443,21 +443,21 @@ function checkNumeric(objName)
 						<?php
 							if (isset($_GET['id2']))
 							{
-						$con = mysql_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root',"123456");
 						if (!$con)
 						  {
-						  die('Could not connect: ' . mysql_error());
+						  die('Could not connect: ' . mysqli_error($con));
 						  }
 						
-						mysql_select_db("inventory", $con);
+						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id2'];
-						$result = mysql_query("SELECT * FROM customer WHERE id = $member_id");
+						$result = mysqli_query($result,"SELECT * FROM customer WHERE id = $member_id");
 						
-						$row = mysql_fetch_array($result);
+						$row = mysqli_fetch_array($result);
 						$name3=$row["member_id"];
 						$name4=$row["name"] .' '. $row["mname"] .' '. $row["lname"];
-						mysql_close($con);
+						mysqli_close($con);
 						}
 						
 						?>
@@ -520,15 +520,15 @@ function checkNumeric(objName)
         <td width="4%">&nbsp;</td>
       </tr>
 	  <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT * FROM sales where code = '$f'");
+$result = mysqli_query($result,"SELECT * FROM sales where code = '$f'");
 
 
 
@@ -548,7 +548,7 @@ function formatMoney($number, $fractional=false) {
 					}	
 
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
       echo '<tr>';
 	  	echo '<td><div align="center">'.$row['pcode'].'</div></td>';
@@ -569,7 +569,7 @@ while($row = mysql_fetch_array($result))
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?>
     </table>
 
@@ -580,23 +580,23 @@ mysql_close($con);
 	<div align="right" style="margin-top:10px;">
 	  Total Retail :
 	    <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT sum(total) FROM sales where code = '$f'");
+$result = mysqli_query($result,"SELECT sum(total) FROM sales where code = '$f'");
 
-while($row2 = mysql_fetch_array($result))
+while($row2 = mysqli_fetch_array($result))
   {
       $yy=$row2['sum(total)'];
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?>
 	
 	    <input name="tretail" type="hidden" id="tretail" size="17" value="<?php echo $yy;?>" readonly/>
@@ -651,28 +651,28 @@ Select Here:
     <td>Customer Name:
 	
 <?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
-$name= mysql_query("select * from supplier");
+mysqli_select_db($con,"inventory");
+$name= mysqli_query($name,"select * from supplier");
 ?>
 
 <select name="PoNumber"  onChange="getCurrencyCode('find_ccode.php?country='+this.value)">
 <?php
 echo '<option>Select Supplier</option>';
- while($res= mysql_fetch_assoc($name))
+ while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option value="'.$res['company_name'].'">';
 echo $res['company_name'];
 echo'</option>';
 }
-$name= mysql_query("select * from customer");
-while($res= mysql_fetch_assoc($name))
+$name= mysqli_query($name,"select * from customer");
+while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option value="'.$res['name'].'">';
@@ -681,7 +681,7 @@ echo'</option>';
 }
 echo'</select>';
 
-mysql_close($con)
+mysqli_close($con)
 
 
 ?>	

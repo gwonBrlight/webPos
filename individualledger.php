@@ -32,15 +32,15 @@ Summary of Credit<br />
     <td width="31%"><div align="center">Amount Purchased </div></td>
   </tr>
   <?php
-  $con = mysql_connect("localhost","root","123456");
+  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $cvbcv=$_GET['cur_code'];
-$result = mysql_query("SELECT * FROM credit where name = '$cvbcv'");
+$result = mysqli_query($results,"SELECT * FROM credit where name = '$cvbcv'");
 
 
 
@@ -60,7 +60,7 @@ function formatMoney($number, $fractional=false) {
 					}	
 
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   echo '<tr>';
     echo '<td><div align="center">'.$row['purdate'].'</div></td>';
@@ -77,16 +77,16 @@ while($row = mysql_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $cvbcv=$_GET['cur_code'];
-$results = mysql_query("SELECT sum(creditpayable), sum(paid) FROM credit where name = '$cvbcv'");
-			while($rowc = mysql_fetch_array($results))
+$results = mysqli_query($results,"SELECT sum(creditpayable), sum(paid) FROM credit where name = '$cvbcv'");
+			while($rowc = mysqli_fetch_array($results))
 			  {
 				  $efgb=$rowc['sum(creditpayable)'];
 				  $efgb1=$rowc['sum(paid)']; 
@@ -108,18 +108,18 @@ Summary of Payment
     <td width="31%"><div align="center">Amount Paid </div></td>
   </tr>
   <?php
-  $con = mysql_connect("localhost","root","123456");
+  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $cv=$_GET['cur_code'];
-$result = mysql_query("SELECT * FROM creditdatails where memberid = '$cv'");
+$result = mysqli_query($results,"SELECT * FROM creditdatails where memberid = '$cv'");
 
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   echo '<tr>';
     echo '<td><div align="center">'.$row['datepayment'].'</div></td>';
@@ -136,16 +136,16 @@ while($row = mysql_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $cvb=$_GET['cur_code'];
-$results = mysql_query("SELECT sum(amount) FROM creditdatails where memberid = '$cvb'");
-			while($rowc = mysql_fetch_array($results))
+$results = mysqli_query($results,"SELECT sum(amount) FROM creditdatails where memberid = '$cvb'");
+			while($rowc = mysqli_fetch_array($results))
 			  {
 				  $efgb1=$rowc['sum(amount)']; 
 				  echo formatMoney($efgb1, true);

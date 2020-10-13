@@ -82,28 +82,28 @@ function checkNumeric(objName)
 <div style="width: 684px; height: 281px;">
 <form id="suggestSearch" action="individualledger.php" method="get" style="width: 358px; margin-left: 171px; margin-top: 129px;">
 <?php
-	  $con = mysql_connect("localhost","root","123456");
+	  $con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
-$name= mysql_query("select * from supplier");
+mysqli_select_db($con,"inventory");
+$name= mysqli_query($name,"select * from supplier");
 ?>
 
 <select name="PoNumber"  onChange="getCurrencyCode('find_ccode.php?country='+this.value)">
 <?php
 echo '<option>Select Supplier</option>';
- while($res= mysql_fetch_assoc($name))
+ while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option value="'.$res['company_name'].'">';
 echo $res['company_name'];
 echo'</option>';
 }
-$name= mysql_query("select * from customer");
-while($res= mysql_fetch_assoc($name))
+$name= mysqli_query($name,"select * from customer");
+while($res= mysqli_fetch_assoc($name))
  
 {
 echo '<option value="'.$res['name'].'">';
@@ -112,7 +112,7 @@ echo'</option>';
 }
 echo'</select>';
 
-mysql_close($con)
+mysqli_close($con)
 
 
 ?>

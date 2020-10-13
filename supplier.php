@@ -54,17 +54,17 @@
           </thead>
           <tbody>
           <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 
-$result = mysql_query("SELECT * FROM supplier");
+$result = mysqli_query($result,"SELECT * FROM supplier");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
     echo '<tr>';
       echo '<td>'.$row['company_name'].'</td>';
@@ -76,7 +76,7 @@ while($row = mysql_fetch_array($result))
     echo '</tr>';
   }
 
-mysql_close($con);
+mysqli_close($con);
 ?> 
           </tbody>
        </table>

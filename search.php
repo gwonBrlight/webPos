@@ -5,8 +5,8 @@ if($_POST)
 
 $q=$_POST['searchword'];
 
-$sql_res=mysql_query("select * from productlist where pcode like '%$q%' or pcode like '%$q%'");
-while($row=mysql_fetch_array($sql_res))
+$sql_res=mysqli_query($sql_res,"select * from productlist where pcode like '%$q%' or pcode like '%$q%'");
+while($row=mysqli_fetch_array($sql_res))
 {
 $fname=$row['pcode'];
 

@@ -209,10 +209,10 @@ color:#cc0000
 			   include('config.php');			
 					$commentid=$_GET['id'];
 								
-								$result3 = mysql_query("SELECT * FROM members where id='$commentid'");
+								$result3 = mysqli_query($result3,"SELECT * FROM members where id='$commentid'");
 								
 								
-								while($row3 = mysql_fetch_array($result3))
+								while($row3 = mysqli_fetch_array($result3))
 								  { 
 			  
 			  
@@ -243,10 +243,10 @@ color:#cc0000
 			   include('config.php');			
 					$commentid=$_GET['id'];
 								
-								$result3 = mysql_query("SELECT * FROM members where id='$commentid'");
+								$result3 = mysqli_query($result3,"SELECT * FROM members where id='$commentid'");
 								
 								
-								while($row3 = mysql_fetch_array($result3))
+								while($row3 = mysqli_fetch_array($result3))
 								  { 
 			  
 			  
@@ -272,10 +272,10 @@ color:#cc0000
 			   include('config.php');			
 					$commentid=$_GET['id'];
 								
-								$result3 = mysql_query("SELECT * FROM members where id='$commentid'");
+								$result3 = mysqli_query($result3,"SELECT * FROM members where id='$commentid'");
 								
 								
-								while($row3 = mysql_fetch_array($result3))
+								while($row3 = mysqli_fetch_array($result3))
 								  { 
 			  
 			  
@@ -322,10 +322,10 @@ color:#cc0000
 								
 $commentid=$_GET['id'];
 								
-								$result3 = mysql_query("SELECT * FROM comment where commentid='$commentid'");
+								$result3 = mysqli_query($result3,"SELECT * FROM comment where commentid='$commentid'");
 								
 								
-								while($row3 = mysql_fetch_array($result3))
+								while($row3 = mysqli_fetch_array($result3))
 								  {  
   
 echo '<div class="item ">';
@@ -334,10 +334,10 @@ echo '<div class="item ">';
  
  echo '<div id="Layer4">';
 	$qwerty=$row3['commentid'];		  
-$result4 = mysql_query("SELECT * FROM members where id='$qwerty'");
+$result4 = mysqli_query($result4,"SELECT * FROM members where id='$qwerty'");
 								
 								
-								while($row4 = mysql_fetch_array($result4))
+								while($row4 = mysqli_fetch_array($result4))
 								  { 
 			  
 			  
@@ -356,15 +356,15 @@ $result4 = mysql_query("SELECT * FROM members where id='$qwerty'");
  		echo '<div style="width: 289px; margin-top: 12px; margin-left: 82px; padding-bottom: 0px;"><a href=update.php?id='.$row3["commentid"] .'>'.$row3["name"].'</a></div>';
 	  	echo '<div style="width: 322px; margin-left: 85px; padding: 4px;">'.$row3['content'].'</div>';
 		$rrr=$row3['id'];
-		$result4 = mysql_query("SELECT * FROM subcomment where subcommentid='$rrr'");
+		$result4 = mysqli_query($result4,"SELECT * FROM subcomment where subcommentid='$rrr'");
 								
 								
-								while($row4 = mysql_fetch_array($result4))
+								while($row4 = mysqli_fetch_array($result4))
 								  { 
 								  echo '<div style="width: 322px; margin-left: 85px; padding: 4px;">';
 								  $fff=$row4['subcommentname'];
-											  $result5 = mysql_query("SELECT * FROM members where id='$fff'");
-												while($row5 = mysql_fetch_array($result5))
+											  $result5 = mysqli_query($result5,"SELECT * FROM members where id='$fff'");
+												while($row5 = mysqli_fetch_array($result5))
 												  {
 												  echo '<div style="float:left;float: left; padding: 0px;"><img src="'.$row5['profilepic'].'" height="30" width="30"></div>';
 								  				  echo '<div style="float: right; margin-left: 0px; width: 285px; padding: 0px; margin-top: 5px;"><a style="text-decoration:none" href=update.php?id='.$row3["commentid"] .'>'.$row5['fname'].' '.$row5['lname'].'</a></div>';

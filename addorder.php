@@ -1,12 +1,12 @@
 <?php
 
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $pname=$_POST['PNAME'];
 $date=$_POST['date'];
 $QTY=$_POST['QTY'];
@@ -52,9 +52,9 @@ if($aba=='.50'){
 $dicount='50%';
 }*/
 
-$result = mysql_query("SELECT * FROM productlist where id='$id'");
+$result = mysqli_query($result,"SELECT * FROM productlist where id='$id'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   $f=$row['psold'];
   $m=$row['pleft'];
@@ -63,12 +63,11 @@ while($row = mysql_fetch_array($result))
   $ab=$f+$QTY;
 	$ac=$m-$QTY;
 
-mysql_query("INSERT INTO sales (name, qty, total, code, date, time, PRICE, pcode)
+mysqli_query($result,"INSERT INTO sales (name, qty, total, code, date, time, PRICE, pcode)
 VALUES ('$pname', '$QTY', '$TOTAL', '$CODE', '$date', '$time', '$PPRICE', '$procode')");
 
 
-mysql_query("UPDATE productlist SET psold = '$ab', pleft = '$ac'
-WHERE id = '$id'");
+mysqli_query($result,"UPDATE productlist SET psold = '$ab', pleft = '$ac' WHERE id = '$id'");
 header("location: auto.php");
-mysql_close($con);
+mysqli_close($con);
 ?>

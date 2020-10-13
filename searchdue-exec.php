@@ -1,15 +1,15 @@
 <div align="center">
 <br /><strong>List of Customer who should pay today</strong><br /><br />
 <?php
-$con = mysql_connect("localhost","root","123456");
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-
-mysql_select_db("inventory", $con);
+	$con = mysqli_connect("localhost","root","123456");
+  if (!$con)
+    {
+      die('Could not connect: ' . mysqli_error($con));
+    }
+  
+  mysqli_select_db($con,"inventory");
 $due=$_POST['due'];
-$result = mysql_query("SELECT * FROM credit where duedate like '%$due%'");
+$result = mysqli_query($result,"SELECT * FROM credit where duedate like '%$due%'");
 echo '<table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr bgcolor="#66FF00">
     <td width="302"><strong><div align="center">Product Code</div></strong></td>
@@ -19,13 +19,13 @@ echo '<table width="800" border="1" cellpadding="0" cellspacing="0">
     <td width="81"><strong><div align="center">Coverage</div></strong></td>
     <td width="107"><strong><div align="center">Number of Payment</div></strong></td>
   </tr>';
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
    echo  '<tr>';
      echo  '<td><div align="center">';
 	 $ble=$row['p_code'];
-	 $results = mysql_query("SELECT * FROM customer where code='$ble'");
-	 while($rows = mysql_fetch_array($results))
+	 $results = mysqli_query($results,"SELECT * FROM customer where code='$ble'");
+	 while($rows = mysqli_fetch_array($results))
   		{
 		echo $rows['name'].' '.$rows['mname'].' '.$rows['lname'];
 		}
@@ -42,6 +42,6 @@ while($row = mysql_fetch_array($result))
  
   }
 echo '</table>';
-mysql_close($con);
+mysqli_close($con);
 ?> 
 </div>

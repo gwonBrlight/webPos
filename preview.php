@@ -28,13 +28,13 @@ a:active {
 <body>
 <div class="style3" style="display:none;">
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $PoNumber=$_POST['PoNumber'];
 $memid=$_POST['memid'];
 $textfield=$_POST['textfield'];
@@ -129,9 +129,9 @@ $rest1 = substr("$pitsa", 0, -8);
 $rest2 = substr("$pitsa", -4);
 $pitsa2=date("m/d/$rest");
 $gtotal=$_POST['gtotal'];
-mysql_query("DELETE FROM salessumarry WHERE transactioncode='$code2'");
-mysql_query("DELETE FROM credit WHERE p_code='$code2'");
-mysql_query("DELETE FROM customer WHERE code='$code2'");
+mysqli_query(mysqli_select_db($con,"inventory"),"DELETE FROM salessumarry WHERE transactioncode='$code2'");
+mysqli_query(mysqli_select_db($con,"inventory"),"DELETE FROM credit WHERE p_code='$code2'");
+mysqli_query(mysqli_select_db($con,"inventory"),"DELETE FROM customer WHERE code='$code2'");
 
 $vvvv=$payable+($payable*$interest);
 						$s=86400;
@@ -212,7 +212,7 @@ function formatMoney($number, $fractional=false) {
     return $number;
 }	
 					
-mysql_close($con);						
+mysqli_close($con);						
 ?>
 </div>
 <div align="center" class="style3"><strong>Put Something Here </strong><span class="style4"><BR />
@@ -221,13 +221,13 @@ Receipt code: <?php echo $code2;?><?php echo $date3;?></span></div>
 <span class="style3"><BR />
 <BR />
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $pitsa=date("m/d/Y");
 $code2=$_POST['code2'];
 $gtotal=$_POST['gtotal'];
@@ -255,19 +255,19 @@ $b=$_POST['amount'];
 $PoNumber=$_POST['PoNumber'];
 $cname=$_POST['cname'];
 $name=$cname.$PoNumber;
-mysql_query("INSERT INTO salessumarry(date, transactioncode, total, mode, a, b, name) VALUES('$pitsa', '$code2', '$gtotal', '$modeofp', '$a', '$b', '$name') ");
+mysqli_query(mysqli_select_db($con,"inventory"),"INSERT INTO salessumarry(date, transactioncode, total, mode, a, b, name) VALUES('$pitsa', '$code2', '$gtotal', '$modeofp', '$a', '$b', '$name') ");
 
 
 
 
 						
-										$result = mysql_query("SELECT * FROM customer where name = '$PoNumber'");
-										while($row1 = mysql_fetch_array($result))
+										$result = mysqli_query(mysqli_select_db($con,"inventory"),"SELECT * FROM customer where name = '$PoNumber'");
+										while($row1 = mysqli_fetch_array($result))
 										{
 										$cname=$row1['name'].' '.$row1['mname'].' '.$row1['lname'];
 										}
 								
-mysql_close($con);
+mysqli_close($con);
 ?>
 <div style="float:left">Customer Name : <?php echo $name;?><br />Customer ID : <?php echo $_POST['cur_code'];?></div><div style="float:right">Date : <?php echo $pitsa;?></div>
 <br />
@@ -286,17 +286,17 @@ mysql_close($con);
         <td width="13%"><div align="center"><strong>AMOUNT</strong></div></td>
       </tr>
 	  <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $f=$_POST['code2'];
-$result = mysql_query("SELECT * FROM sales where code = '$f'");
+$result = mysqli_query($result,"SELECT * FROM sales where code = '$f'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
       echo '<tr>';
 	  	echo '<td><div align="center">'.$row['pcode'].'</div></td>';
@@ -314,28 +314,28 @@ while($row = mysql_fetch_array($result))
 	  
 	  }
 
-mysql_close($con);
+mysqli_close($con);
 ?></tr>
 <tr>
         <td colspan="4" class="style3"><div align="right"><strong>Total Quantity Ordered:</strong>&nbsp;</div></td>
         <td width="10%" class="style3"><div align="right">
 	<?php
-			$con = mysql_connect("localhost","root","123456");
+			$con = mysqli_connect("localhost","root","123456");
 			if (!$con)
 			  {
-			  die('Could not connect: ' . mysql_error());
+			  die('Could not connect: ' . mysqli_error($con));
 			  }
 			
-			mysql_select_db("inventory", $con);
+			mysqli_select_db($con,"inventory");
 			$f=$_POST['code2'];
-			$result = mysql_query("SELECT sum(qty) FROM sales where code = '$f'");
+			$result = mysqli_query($result,"SELECT sum(qty) FROM sales where code = '$f'");
 			
-			while($row2 = mysql_fetch_array($result))
+			while($row2 = mysqli_fetch_array($result))
 			  {
 				  echo $row2['sum(qty)'];  
 			  }
 			
-			mysql_close($con);
+			mysqli_close($con);
 			?>&nbsp;&nbsp;&nbsp;</div>		</td>
 </tr>
 <tr>
@@ -377,35 +377,35 @@ mysql_close($con);
 <tr>
         <td colspan="4" class="style3"><div align="right"><strong>Mode of Payment:</strong>&nbsp;</div></td>
     <td width="10%" class="style3"><div align="right"><?php
-			$con = mysql_connect("localhost","root","123456");
+			$con = mysqli_connect("localhost","root","123456");
 			if (!$con)
 			  {
-			  die('Could not connect: ' . mysql_error());
+			  die('Could not connect: ' . mysqli_error($con));
 			  }
 			
-			mysql_select_db("inventory", $con);
+			mysqli_select_db($con,"inventory");
 			$f=$_POST['code2'];
-			$result = mysql_query("SELECT * FROM salessumarry where transactioncode = '$f'");
+			$result = mysqli_query($result,"SELECT * FROM salessumarry where transactioncode = '$f'");
 			
-			$row2 = mysql_fetch_array($result);
+			$row2 = mysqli_fetch_array($result);
 			  
 				  echo $row2['mode'];  
 				 
 			  
 			
-			mysql_close($con);
+			mysqli_close($con);
 			
 			?>&nbsp;&nbsp;&nbsp;</div></td>
 </tr>
 
 <?php
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 
 if (!$con)
 {
-die('Could not connect: ' . mysql_error());
+die('Could not connect: ' . mysqli_error($con));
 }			
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 									if ($textfield=='1')
 									{
 									echo '<tr>';
@@ -547,13 +547,13 @@ if (($rest==1) or ($rest==2) or ($rest==3) or ($rest==4) or ($rest==5) or ($rest
 
 
 $qwpoi=$_POST['cur_code'];									
-mysql_query("INSERT INTO credit 
+mysqli_query(mysqli_select_db($con,"inventory"),"INSERT INTO credit 
 (duedate, p_code, paid, creditpayable, duepayable, coverage, nu_payment, name, purdate) VALUES('$datev', '$code2', '$down', '$vvvv', '$payableperdue', '$pc', '$np', '$qwpoi', '$pitsa')") 
-or die(mysql_error()); 
+or die(mysqli_error($con)); 
 
 											
 									}
-mysql_close($con);
+mysqli_close($con);
 ?>
 </table>
 <span class="style3"><br />

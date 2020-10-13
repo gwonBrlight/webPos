@@ -1,12 +1,12 @@
 <?php
 
-$con = mysql_connect("localhost","root","123456");
+$con = mysqli_connect("localhost","root","123456");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 $pname=$_POST['PNAME'];
 $date=$_POST['date'];
 $QTY=$_POST['QTY'];
@@ -21,20 +21,20 @@ $vatable=$TOTAL*.12;
 $net=$TOTAL-$vatable;
 
 
-$result = mysql_query("SELECT * FROM productlist where id='$id'");
+$result = mysqli_query($result,"SELECT * FROM productlist where id='$id'");
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
   $m=$row['pleft'];
   }
   $ab=$m+$QTY;
 
-mysql_query("INSERT INTO stockin (name, CODE, qty, total, transactioncode, datepurchase, PRICE)
+mysqli_query($result,"INSERT INTO stockin (name, CODE, qty, total, transactioncode, datepurchase, PRICE)
 VALUES ('$pname', '$PCODES', '$QTY', '$TOTAL', '$CODE', '$datetime', '$PPRICE')");
 
 
-mysql_query("UPDATE productlist SET pleft = '$ab'
+mysqli_query($result,"UPDATE productlist SET pleft = '$ab'
 WHERE id = '$id'");
 header("location: stockin.php");
-mysql_close($con);
+mysqli_close($con);
 ?>

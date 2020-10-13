@@ -1,22 +1,22 @@
 <?php
- $con = mysql_connect("localhost","root","abc123");
+ $con = mysqli_connect("localhost","root","abc123");
 if (!$con)
   {
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ' . mysqli_error($con));
   }
 
-mysql_select_db("inventory", $con);
+mysqli_select_db($con,"inventory");
 
 $sql="SELECT * FROM supplier WHERE company_name = '".$q."'";
 
-$result = mysql_query($sql);
+$result = mysqli_query(mysqli_select_db($con,"inventory"),$sql);
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
    echo $row['contact_name'];
 
 }
 
 
-mysql_close($con);
+mysqli_close($con);
 ?> 

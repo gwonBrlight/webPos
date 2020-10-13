@@ -1,24 +1,24 @@
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysql_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root',"123456");
 						if (!$con)
 						  {
-						  die('Could not connect: ' . mysql_error());
+						  die('Could not connect: ' . mysqli_error($con));
 						  }
 						
-						mysql_select_db("inventory", $con);
+						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id'];
-						$result = mysql_query("SELECT * FROM supplier WHERE id = $member_id");
+						$result = mysqli_query($result,"SELECT * FROM supplier WHERE id = $member_id");
 						
-						$row = mysql_fetch_array($result);
+						$row = mysqli_fetch_array($result);
 						$id=$row["id"];
 						$company_name=$row["company_name"];
 						$contact_name=$row["contact_name"];
 						$address=$row["address"];
 						$contactno=$row["contactno"];
-						mysql_close($con);
+						mysqli_close($con);
 						}
 						
 						?>
