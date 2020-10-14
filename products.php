@@ -44,12 +44,12 @@
 	 <div id="body">
 <table cellpadding="1" cellspacing="1" id="resultTable">
           <thead>
-            <tr bgcolor="#33FF00" style="margin-bottom:10px;">
-              <th>Code</th>
-              <th>Description</th>
-              <th>Qty Sold</th>
-			  <th>Qty Left</th>
-              <th>Price</th>
+            <tr bgcolor="#fceecf" style="margin-bottom:10px;">
+              <th>상품코드</th>
+              <th>상품설명</th>
+              <th>판매</th>
+			        <th>재고</th>
+              <th>가격</th>
               <th>Action</th>
             </tr>
           </thead>

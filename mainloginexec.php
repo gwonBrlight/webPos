@@ -1,20 +1,25 @@
 <?php
 	//Start session
 	session_start();
-	
+
 	//Array to store validation errors
 	$errmsg_arr = array();
 	
 	//Validation error flag
 	$errflag = false;
 	
+	$mysql_host = 'localhost';
+    $mysql_user = 'root';
+    $mysql_password = '123456';
+	$mysql_db = 'inventory';
+	
 	//Connect to mysql server
-	$link = mysqli_connect("localhost","root","123456");
+	$link = mysqli_connect($mysql_host,$mysql_user,$mysql_password);
 	if(!$link) {
 		die('Failed to connect to server: ' . mysqli_error($link));
 	}
-	
-	$db = mysqli_select_db($link, "inventory");
+
+	$db = mysqli_select_db($link, $mysql_db);
 	if(!$db) {
 		die("Unable to select database");
 	}
@@ -32,13 +37,15 @@
 	
 	
 	// Generate Guid 
-	$login = $_POST['username'];//$login = clean($_POST['username']);
-	$password = $_POST['password'];//$password = clean($_POST['password']);
+	$login = $_POST['username'];
+	//$login = clean($_POST['username']);
+	$password = $_POST['password'];
+	//$password = clean($_POST['password']);
 	
 	
 	//Create query
 	$qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
-	$result=mysqli_query($result,$qry);
+	$result=mysqli_query($link,$qry);
 	
 	//Check whether the query was successful or not
 	if($result) {
@@ -50,7 +57,8 @@
 			session_write_close();
 			header("location: home.php");
 			exit();
-		}else {
+		}
+		else {
 			//Login failed
 			header("location: searchname.php");
 			exit();
