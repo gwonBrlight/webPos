@@ -36,7 +36,7 @@
   <div align="center" class="style1">Products</div>
 <br />
   <a href="home.php"><img src="img/64x64/back.png" alt="back" border="0" /></a>
-  <p align="center"><a rel="facebox" href="addproduct.php">add products</a> </p>
+  <p align="center"><a rel="facebox" href="addproduct.php">상품 추가</a> </p>
     <div id="pagewrap">
 <div id="search">
         <label for="filter">Filter</label> <input type="text" name="filter" value="" id="filter" />
@@ -46,6 +46,7 @@
           <thead>
             <tr bgcolor="#fceecf" style="margin-bottom:10px;">
               <th>상품코드</th>
+              <th>상품이름</th>
               <th>상품설명</th>
               <th>판매</th>
 			        <th>재고</th>
@@ -69,11 +70,12 @@ while($row = mysqli_fetch_array($result))
   {
     echo '<tr>';
       echo '<td>'.$row['pcode'].'</td>';
+      echo '<td>'.$row['pname'].'</td>';
       echo '<td>'.$row['pdesc'].'</td>';
       echo '<td><div align="center">'.$row['psold'].'</div></td>';
       echo '<td><div align="center">'.$row['pleft'].'</div></td>';
       echo '<td><div align="center">'.$row['pprice'].'</div></td>';
-      echo '<td><div align="center">'.'<a rel="facebox" href=editproduct.php?id=' . $row["id"] .'>edit</a>'.'|'.'<a rel="facebox" href=deletep.php?id=' . $row["id"] .'>del</a>'.' </div></td>';
+      echo '<td><div align="center">'.'<a rel="facebox" href=editproduct.php?pcode=' . $row['pcode'] .'>수정</a>'.'|'.'<a rel="facebox" href=deletep.php?pcode=' . $row['pcode'] .'>삭제</a>'.' </div></td>';
     echo '</tr>';
   }
 

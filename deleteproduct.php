@@ -5,9 +5,8 @@ if (!$con)
   die('Could not connect: ' . mysqli_error($con));
   }
 
-mysqli_select_db($con,"inventory");
-$a=$_POST['a'];
-mysqli_query(mysqli_select_db($con,"inventory"),"DELETE FROM productlist WHERE id='$a'");
+$a=$_POST["a"];
+mysqli_query($con,"DELETE FROM productlist WHERE pcode='$a'");
 header ("location: products.php");
 mysqli_close($con);
 ?>

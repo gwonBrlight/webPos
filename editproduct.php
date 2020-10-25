@@ -1,5 +1,5 @@
 <?php
-							if (isset($_GET['id']))
+							if (isset($_GET['pcode']))
 							{
 						$con = mysqli_connect('localhost','root','123456','inventory','3307');
 						if (!$con)
@@ -9,11 +9,10 @@
 						
 						mysqli_select_db($con,"inventory");
 						
-						$member_id = $_GET['id'];
-						$result = mysqli_query(mysqli_select_db($con,"inventory"),"SELECT * FROM productlist WHERE id = $member_id");
+						$member_pcode = $_GET['pcode'];
+						$result = mysqli_query($con,"SELECT * FROM productlist WHERE pcode = $member_pcode");
 						
 						$row = mysqli_fetch_array($result);
-						$id=$row["id"];
 						$pcode=$row["pcode"];
 						$pname=$row["pname"];
 						$pdesc=$row["pdesc"];
@@ -28,14 +27,17 @@
 
 
 <form action="editexec.php" method="post">
-code:<br />
-<input name="a" type="text" value="<?php echo $pcode; ?>" /><input name="m" type="hidden" value="<?php echo $id; ?>" /><br />
-description:<br />
-<input name="c" type="text" value="<?php echo $pdesc; ?>" size="70" />
+바코드숫자:<br />
+<input name="a" type="text" /><br />
+상품명:<br />
+<input name="b" type="text" size="70" />
 <br />
-quantity:<br />
-<input name="d" type="text" value="<?php echo $pleft; ?>" /><br />
-price:<br />
-<input name="e" type="text" value="<?php echo $pprice; ?>" /><br />
+상품 설명:<br />
+<input name="c" type="text" size="70" />
+<br />
+수량:<br />
+<input name="d" type="text" /><br />
+가격:<br />
+<input name="e" type="text" /><br />
 <input name="submit" type="submit" value="save">
 </form>
