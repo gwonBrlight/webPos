@@ -27,7 +27,7 @@
           </thead>
           <tbody>
           <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -48,7 +48,7 @@ function formatMoney($number, $fractional=false) {
     }
     return $number;
 }	
-$result = mysqli_query($result,"SELECT * FROM productlist");
+$result = mysqli_query($con,"SELECT * FROM productlist");
 
 while($row = mysqli_fetch_array($result))
   {

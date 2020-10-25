@@ -32,7 +32,7 @@ Summary of Credit<br />
     <td width="31%"><div align="center">Amount Purchased </div></td>
   </tr>
   <?php
-  $con = mysqli_connect("localhost","root","123456");
+  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -40,7 +40,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $cvbcv=$_GET['cur_code'];
-$result = mysqli_query($results,"SELECT * FROM credit where name = '$cvbcv'");
+$result = mysqli_query($cons,"SELECT * FROM credit where name = '$cvbcv'");
 
 
 
@@ -77,7 +77,7 @@ while($row = mysqli_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysqli_connect("localhost","root","123456");
+	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -85,7 +85,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $cvbcv=$_GET['cur_code'];
-$results = mysqli_query($results,"SELECT sum(creditpayable), sum(paid) FROM credit where name = '$cvbcv'");
+$results = mysqli_query($cons,"SELECT sum(creditpayable), sum(paid) FROM credit where name = '$cvbcv'");
 			while($rowc = mysqli_fetch_array($results))
 			  {
 				  $efgb=$rowc['sum(creditpayable)'];
@@ -108,7 +108,7 @@ Summary of Payment
     <td width="31%"><div align="center">Amount Paid </div></td>
   </tr>
   <?php
-  $con = mysqli_connect("localhost","root","123456");
+  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -116,7 +116,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $cv=$_GET['cur_code'];
-$result = mysqli_query($results,"SELECT * FROM creditdatails where memberid = '$cv'");
+$result = mysqli_query($cons,"SELECT * FROM creditdatails where memberid = '$cv'");
 
 
 while($row = mysqli_fetch_array($result))
@@ -136,7 +136,7 @@ while($row = mysqli_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysqli_connect("localhost","root","123456");
+	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -144,7 +144,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $cvb=$_GET['cur_code'];
-$results = mysqli_query($results,"SELECT sum(amount) FROM creditdatails where memberid = '$cvb'");
+$results = mysqli_query($cons,"SELECT sum(amount) FROM creditdatails where memberid = '$cvb'");
 			while($rowc = mysqli_fetch_array($results))
 			  {
 				  $efgb1=$rowc['sum(amount)']; 

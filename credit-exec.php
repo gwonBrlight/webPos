@@ -1,6 +1,6 @@
 
 <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -10,7 +10,7 @@ mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
 $mn=$_POST['c'];
  
-$result = mysqli_query($result,"SELECT * FROM credit where p_code = '$creditcode'");
+$result = mysqli_query($con,"SELECT * FROM credit where p_code = '$creditcode'");
 
 while($row1 = mysqli_fetch_array($result))
 {
@@ -21,7 +21,7 @@ $paid=$row1['paid'];
 $totalamount=$cp+$paid;
 $creditpayable=$row1['creditpayable'];
 }
-$resulta = mysqli_query($resulta,"SELECT * FROM customer where code = '$creditcode'");
+$resulta = mysqli_query($cona,"SELECT * FROM customer where code = '$creditcode'");
 
 while($rows = mysqli_fetch_array($resulta))
 {
@@ -34,15 +34,15 @@ $cusm=$rows['mname'];
 $ble=$mn+$paid;
 $astig=$cp-$mn; 
 $fop=date("m/d/Y");
-mysqli_query($resulta,"UPDATE credit SET creditpayable = '$astig', paid='$ble'
+mysqli_query($cona,"UPDATE credit SET creditpayable = '$astig', paid='$ble'
 WHERE p_code = '$creditcode'");
-mysqli_query($resulta,"INSERT INTO creditdatails (amount, datepayment, creditcode, balance)
+mysqli_query($cona,"INSERT INTO creditdatails (amount, datepayment, creditcode, balance)
 VALUES ('$mn', '$fop', '$creditcode', '$creditpayable')");
 
 mysqli_close($con);
 ?>
 <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -51,7 +51,7 @@ if (!$con)
 mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
  
-$result = mysqli_query($result,"SELECT * FROM credit where p_code = '$creditcode'");
+$result = mysqli_query($con,"SELECT * FROM credit where p_code = '$creditcode'");
 
 $row1 = mysqli_fetch_array($result);
 
@@ -87,7 +87,7 @@ mysqli_close($con);
     <td><div align="center">Balance</div></td>
   </tr>
   <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -96,7 +96,7 @@ if (!$con)
 mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
  
-$result = mysqli_query($result,"SELECT * FROM creditdatails where creditcode = '$creditcode'");
+$result = mysqli_query($con,"SELECT * FROM creditdatails where creditcode = '$creditcode'");
 
 while($row1 = mysqli_fetch_array($result))
 {

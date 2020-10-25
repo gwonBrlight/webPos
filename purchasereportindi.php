@@ -8,7 +8,7 @@
     <td width="127" style="border-color:#000000; border-style:solid; border-width:1px;"><div align="center"><strong>Total</strong></div></td>
   </tr>
   <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -32,7 +32,7 @@ function formatMoney($number, $fractional=false) {
 $a=$_POST['dayfrom'];
 $b=$_POST['dayto'];
 $daycusname=$_POST['daycusname']; 
-$result1 = mysqli_query($result1,"SELECT * FROM stockinsumarry WHERE (supplier='$daycusname') AND (pdate BETWEEN '$a' AND '$b')");
+$result1 = mysqli_query($con1,"SELECT * FROM stockinsumarry WHERE (supplier='$daycusname') AND (pdate BETWEEN '$a' AND '$b')");
 
 while($row = mysqli_fetch_array($result1))
 {
@@ -56,7 +56,7 @@ mysqli_close($con);
 	
 	  <div align="center">
 	    <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -67,7 +67,7 @@ $a=$_POST['dayfrom'];
 $b=$_POST['dayto'];
 $daycusname=$_POST['daycusname'];
  
-$result1 = mysqli_query($result1,"SELECT sum(total) FROM stockinsumarry WHERE (supplier='$daycusname') AND (pdate BETWEEN '$a' AND '$b')");
+$result1 = mysqli_query($con1,"SELECT sum(total) FROM stockinsumarry WHERE (supplier='$daycusname') AND (pdate BETWEEN '$a' AND '$b')");
 while($row = mysqli_fetch_array($result1))
 {
     $rrr=$row['sum(total)'];

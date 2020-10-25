@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -52,7 +52,7 @@ if($aba=='.50'){
 $dicount='50%';
 }*/
 
-$result = mysqli_query($result,"SELECT * FROM productlist where id='$id'");
+$result = mysqli_query($con,"SELECT * FROM productlist where id='$id'");
 
 while($row = mysqli_fetch_array($result))
   {
@@ -63,11 +63,11 @@ while($row = mysqli_fetch_array($result))
   $ab=$f+$QTY;
 	$ac=$m-$QTY;
 
-mysqli_query($result,"INSERT INTO sales (name, qty, total, code, date, time, PRICE, pcode)
+mysqli_query($con,"INSERT INTO sales (name, qty, total, code, date, time, PRICE, pcode)
 VALUES ('$pname', '$QTY', '$TOTAL', '$CODE', '$date', '$time', '$PPRICE', '$procode')");
 
 
-mysqli_query($result,"UPDATE productlist SET psold = '$ab', pleft = '$ac' WHERE id = '$id'");
+mysqli_query($con,"UPDATE productlist SET psold = '$ab', pleft = '$ac' WHERE id = '$id'");
 header("location: auto.php");
 mysqli_close($con);
 ?>

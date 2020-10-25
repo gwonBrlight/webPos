@@ -72,7 +72,7 @@ To: <input name="dayto" type="text" class="tcal" />&nbsp;&nbsp;&nbsp;
 <form action="purchasereportindi.php" method="post" style="color:#FF00FF;">
 Members Name: 
 <?php
-	  $con = mysqli_connect("localhost","root","123456");
+	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

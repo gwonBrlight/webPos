@@ -3,7 +3,7 @@
 
 
 <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -16,7 +16,7 @@ $b=$_POST['dayto'];
 $dayf = substr($a, 0, -5);
 $dayt = substr($b, 0, -5);
  
-$result = mysqli_query($result,"SELECT * FROM customer WHERE birthday BETWEEN '$dayf' AND '$dayt'");
+$result = mysqli_query($con,"SELECT * FROM customer WHERE birthday BETWEEN '$dayf' AND '$dayt'");
 echo 'list of birthday celebrant from <b>'.$a.'</b> to <b>'.$b.'</b><br><br>';
 echo '<table width="400" border="1" cellpadding="0" cellspacing="0">
 <tr>

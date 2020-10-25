@@ -167,7 +167,7 @@ function formatMoney($number, $fractional=false) {
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysqli_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root','123456','inventory','3307');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));
@@ -176,7 +176,7 @@ function formatMoney($number, $fractional=false) {
 						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id'];
-						$result = mysqli_query($result,"SELECT * FROM productlist WHERE id = $member_id");
+						$result = mysqli_query($con,"SELECT * FROM productlist WHERE id = $member_id");
 						
 						$row = mysqli_fetch_array($result);
 						$name=$row["pdesc"];
@@ -259,7 +259,7 @@ function formatMoney($number, $fractional=false) {
 		<td width="5%">&nbsp;</td>
       </tr>
 	  <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -267,7 +267,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysqli_query($result,"SELECT * FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($con,"SELECT * FROM stockin where transactioncode = '$f'");
 
 while($row = mysqli_fetch_array($result))
   {
@@ -313,7 +313,7 @@ mysqli_close($con);
 <tr>
     <td><div align="right"><strong>Total Quantity:</strong></div></td>
     <td><?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -321,7 +321,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysqli_query($result,"SELECT sum(qty) FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($con,"SELECT sum(qty) FROM stockin where transactioncode = '$f'");
 
 while($row2 = mysqli_fetch_array($result))
   {
@@ -335,7 +335,7 @@ mysqli_close($con);
   <tr>
     <td width="1116"><div align="right"><strong>Total:</strong></div></td>
     <td width="168"><?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -343,7 +343,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysqli_query($result,"SELECT sum(total) FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($con,"SELECT sum(total) FROM stockin where transactioncode = '$f'");
 
 while($row2 = mysqli_fetch_array($result))
   {
@@ -359,7 +359,7 @@ mysqli_close($con);
 <tr>
     <td><div align="right"><strong>Supplier:</strong></div></td>
     <td><?php
-	  $con = mysqli_connect("localhost","root","123456");
+	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

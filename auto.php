@@ -408,7 +408,7 @@ function checkNumeric(objName)
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysqli_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root','123456','inventory','3307');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));
@@ -419,10 +419,7 @@ function checkNumeric(objName)
 						$member_id = $_GET['id'];
 						
 						
-						
-						
-						
-						$result = mysqli_query($result,"SELECT * FROM productlist WHERE id = $member_id");
+						$result = mysqli_query($con,"SELECT * FROM productlist WHERE id = $member_id");
 						
 						$row = mysqli_fetch_array($result);
 						$name=$row["pdesc"];
@@ -443,7 +440,7 @@ function checkNumeric(objName)
 						<?php
 							if (isset($_GET['id2']))
 							{
-						$con = mysqli_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root','123456','inventory','3307');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));
@@ -452,7 +449,7 @@ function checkNumeric(objName)
 						mysqli_select_db($con,"inventory");
 						
 						$member_id = $_GET['id2'];
-						$result = mysqli_query($result,"SELECT * FROM customer WHERE id = $member_id");
+						$result = mysqli_query($con,"SELECT * FROM customer WHERE id = $member_id");
 						
 						$row = mysqli_fetch_array($result);
 						$name3=$row["member_id"];
@@ -520,7 +517,7 @@ function checkNumeric(objName)
         <td width="4%">&nbsp;</td>
       </tr>
 	  <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -528,7 +525,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysqli_query($result,"SELECT * FROM sales where code = '$f'");
+$result = mysqli_query($con,"SELECT * FROM sales where code = '$f'");
 
 
 
@@ -580,7 +577,7 @@ mysqli_close($con);
 	<div align="right" style="margin-top:10px;">
 	  Total Retail :
 	    <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -588,7 +585,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_SESSION['SESS_MEMBER_ID'];
-$result = mysqli_query($result,"SELECT sum(total) FROM sales where code = '$f'");
+$result = mysqli_query($con,"SELECT sum(total) FROM sales where code = '$f'");
 
 while($row2 = mysqli_fetch_array($result))
   {
@@ -651,7 +648,7 @@ Select Here:
     <td>Customer Name:
 	
 <?php
-	  $con = mysqli_connect("localhost","root","123456");
+	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

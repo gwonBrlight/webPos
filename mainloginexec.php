@@ -14,7 +14,7 @@
 	$mysql_db = 'inventory';
 	
 	//Connect to mysql server
-	$link = mysqli_connect($mysql_host,$mysql_user,$mysql_password);
+	$link = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db,'3307');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysqli_error($link));
 	}

@@ -1,7 +1,7 @@
 <?php
 							if (isset($_GET['id']))
 							{
-						$con = mysqli_connect('localhost','root',"123456");
+						$con = mysqli_connect('localhost','root','123456','inventory','3307');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));

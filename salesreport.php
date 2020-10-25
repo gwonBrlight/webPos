@@ -11,7 +11,7 @@
     <td width="127" style="border-color:#000000; border-style:solid; border-width:1px;"><div align="center"><strong>Total</strong></div></td>
   </tr>
   <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -35,7 +35,7 @@ function formatMoney($number, $fractional=false) {
 $a=$_POST['dayfrom'];
 $b=$_POST['dayto'];
  
-$result1 = mysqli_query($result1,"SELECT * FROM salessumarry WHERE date BETWEEN '$a' AND '$b'");
+$result1 = mysqli_query($con1,"SELECT * FROM salessumarry WHERE date BETWEEN '$a' AND '$b'");
 
 while($row = mysqli_fetch_array($result1))
 {
@@ -43,7 +43,7 @@ while($row = mysqli_fetch_array($result1))
     echo '<td style="border-color:#000000; border-style:solid; border-width:1px;"><div align="center">'.$row['date'].'</div></td>';
     echo '<td style="border-color:#000000; border-style:solid; border-width:1px;"><div align="center">'.$row['transactioncode'].'</div></td>';
  $fgh=$row['transactioncode'];   
-$result4 = mysqli_query($result4,"SELECT * FROM customer WHERE code='$fgh'");
+$result4 = mysqli_query($con4,"SELECT * FROM customer WHERE code='$fgh'");
 
 $row4 = mysqli_fetch_array($result4);	
 	
@@ -73,7 +73,7 @@ mysqli_close($con);
 	
 	  <div align="center">
 	    <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -83,7 +83,7 @@ mysqli_select_db($con,"inventory");
 $a=$_POST['dayfrom'];
 $b=$_POST['dayto'];
  
-$result1 = mysqli_query($result1,"SELECT sum(total) FROM salessumarry WHERE date BETWEEN '$a' AND '$b'");
+$result1 = mysqli_query($con1,"SELECT sum(total) FROM salessumarry WHERE date BETWEEN '$a' AND '$b'");
 while($row = mysqli_fetch_array($result1))
 {
     $rrr=$row['sum(total)'];

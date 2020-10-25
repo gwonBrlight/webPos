@@ -1,5 +1,5 @@
 <?php
- $con = mysqli_connect("localhost","root","abc123");
+ $con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -95,7 +95,7 @@ VAT REG. TIN: 203-384-720-000</span><br />
     <td width="10%"><div align="center" class="style2"><strong>TOTAL</strong></div></td>
   </tr>
   <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -121,7 +121,7 @@ function formatMoney($number, $fractional=false) {
 
 
 $f=$_POST['CODE1'];
-$result = mysqli_query($result,"SELECT * FROM stockin where transactioncode = '$f'");
+$result = mysqli_query($con,"SELECT * FROM stockin where transactioncode = '$f'");
 
 while($row = mysqli_fetch_array($result))
   {

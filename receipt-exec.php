@@ -32,7 +32,7 @@ a:active {
 <div class="style3" style="display:none;">
 <?php
 
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -41,7 +41,7 @@ if (!$con)
 mysqli_select_db($con,"inventory");
 
 $code=$_POST['code'];
-$result = mysqli_query($result,"SELECT * FROM customer where code = '$code'");
+$result = mysqli_query($con,"SELECT * FROM customer where code = '$code'");
 while($row1 = mysqli_fetch_array($result))
 {
 $name=$row1['name'];
@@ -128,7 +128,7 @@ Receipt code: <?php echo $_POST['code'];?></span></div>
         <td width="13%"><div align="center"><strong>AMOUNT</strong></div></td>
       </tr>
 	  <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -136,7 +136,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 $f=$_POST['code'];
-$result6 = mysqli_query($result6,"SELECT * FROM salessumarry where transactioncode = '$f'");
+$result6 = mysqli_query($con6,"SELECT * FROM salessumarry where transactioncode = '$f'");
 $row6 = mysqli_fetch_array($result6);
 
 $VBNM=$row6['mode'];
@@ -206,7 +206,7 @@ $cash=formatMoney($a, true);
 $change=formatMoney($b, true);
 
 
-$result = mysqli_query($result,"SELECT * FROM sales where code = '$f'");
+$result = mysqli_query($con,"SELECT * FROM sales where code = '$f'");
 
 while($row = mysqli_fetch_array($result))
   {
@@ -232,7 +232,7 @@ mysqli_close($con);
         <td colspan="3" class="style3"><div align="right"><strong>Total Quantity Ordered:</strong>&nbsp;</div></td>
         <td width="13%" class="style3"><div align="right">
 	<?php
-			$con = mysqli_connect("localhost","root","123456");
+			$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysqli_error($con));
@@ -240,7 +240,7 @@ mysqli_close($con);
 			
 			mysqli_select_db($con,"inventory");
 			$f=$_POST['code'];
-			$result = mysqli_query($result,"SELECT sum(qty) FROM sales where code = '$f'");
+			$result = mysqli_query($con,"SELECT sum(qty) FROM sales where code = '$f'");
 			
 			while($row2 = mysqli_fetch_array($result))
 			  {
@@ -254,7 +254,7 @@ mysqli_close($con);
         <td colspan="3" class="style3"><div align="right"><strong>Total Retail:</strong>&nbsp;</div></td>
         <td width="13%" class="style3"><div align="right">
 	<?php
-			$con = mysqli_connect("localhost","root","123456");
+			$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . $con);
@@ -262,7 +262,7 @@ mysqli_close($con);
 			
 			mysqli_select_db($con,"inventory");
 			$f=$_POST['code'];
-			$result = mysqli_query($result,"SELECT sum(total), sum(less) FROM sales where code = '$f'");
+			$result = mysqli_query($con,"SELECT sum(total), sum(less) FROM sales where code = '$f'");
 			
 			while($row2 = mysqli_fetch_array($result))
 			  {
@@ -280,7 +280,7 @@ mysqli_close($con);
         <td colspan="3" class="style3"><div align="right"><strong>Less Discount:</strong>&nbsp;</div></td>
         <td width="13%" class="style3"><div align="right">
 	<?php
-			$con = mysqli_connect("localhost","root","123456");
+			$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysqli_error($con));
@@ -288,7 +288,7 @@ mysqli_close($con);
 			
 			mysqli_select_db($con,"inventory");
 			$r=$_POST['code'];
-			$results = mysqli_query($results,"SELECT sum(less) FROM sales where code = '$r'");
+			$results = mysqli_query($cons,"SELECT sum(less) FROM sales where code = '$r'");
 			
 			while($rowz = mysqli_fetch_array($results))
 			  {
@@ -307,7 +307,7 @@ mysqli_close($con);
 <tr>
         <td colspan="3" class="style3"><div align="right"><strong>Total Payable:</strong>&nbsp;</div></td>
     <td width="13%" class="style3"><div align="right"><?php
-			$con = mysqli_connect("localhost","root","123456");
+			$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysqli_error($con));
@@ -315,7 +315,7 @@ mysqli_close($con);
 			
 			mysqli_select_db($con,"inventory");
 			$f=$_POST['code'];
-			$result = mysqli_query($result,"SELECT sum(total) FROM sales where code = '$f'");
+			$result = mysqli_query($con,"SELECT sum(total) FROM sales where code = '$f'");
 			
 			while($row2 = mysqli_fetch_array($result))
 			  {
@@ -332,7 +332,7 @@ mysqli_close($con);
 <tr>
         <td colspan="3" class="style3"><div align="right"><strong>Mode of Payment:</strong>&nbsp;</div></td>
     <td width="13%" class="style3"><div align="right"><?php
-			$con = mysqli_connect("localhost","root","123456");
+			$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysqli_error($con));
@@ -340,7 +340,7 @@ mysqli_close($con);
 			
 			mysqli_select_db($con,"inventory");
 			$f=$_POST['code'];
-			$result = mysqli_query($result,"SELECT * FROM salessumarry where transactioncode = '$f'");
+			$result = mysqli_query($con,"SELECT * FROM salessumarry where transactioncode = '$f'");
 			
 			$row2 = mysqli_fetch_array($result);
 			  
@@ -359,7 +359,7 @@ mysqli_close($con);
 
 
 <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 			if (!$con)
 			  {
 			  die('Could not connect: ' . mysqli_error($con));
@@ -368,7 +368,7 @@ $con = mysqli_connect("localhost","root","123456");
 			mysqli_select_db($con,"inventory");
 $creditcode=$_POST['code'];
  
-$result = mysqli_query($result,"SELECT * FROM credit where p_code = '$creditcode'");
+$result = mysqli_query($con,"SELECT * FROM credit where p_code = '$creditcode'");
 
 $row1 = mysqli_fetch_array($result);
 $df=$row1['creditpayable'];

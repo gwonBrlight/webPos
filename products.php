@@ -55,7 +55,7 @@
           </thead>
           <tbody>
           <?php
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -63,7 +63,7 @@ if (!$con)
 
 mysqli_select_db($con,"inventory");
 
-$result = mysqli_query($result,"SELECT * FROM productlist order by pdesc ASC");
+$result = mysqli_query($con,"SELECT * FROM productlist");
 
 while($row = mysqli_fetch_array($result))
   {

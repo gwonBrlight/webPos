@@ -1,7 +1,7 @@
 <div align="center">
 <br /><strong>List of Customer who should pay today</strong><br /><br />
 <?php
-	$con = mysqli_connect("localhost","root","123456");
+	$con = mysqli_connect('localhost','root','123456','inventory','3307');
   if (!$con)
     {
       die('Could not connect: ' . mysqli_error($con));
@@ -9,7 +9,7 @@
   
   mysqli_select_db($con,"inventory");
 $due=$_POST['due'];
-$result = mysqli_query($result,"SELECT * FROM credit where duedate like '%$due%'");
+$result = mysqli_query($con,"SELECT * FROM credit where duedate like '%$due%'");
 echo '<table width="800" border="1" cellpadding="0" cellspacing="0">
   <tr bgcolor="#66FF00">
     <td width="302"><strong><div align="center">Product Code</div></strong></td>
@@ -24,7 +24,7 @@ while($row = mysqli_fetch_array($result))
    echo  '<tr>';
      echo  '<td><div align="center">';
 	 $ble=$row['p_code'];
-	 $results = mysqli_query($results,"SELECT * FROM customer where code='$ble'");
+	 $results = mysqli_query($cons,"SELECT * FROM customer where code='$ble'");
 	 while($rows = mysqli_fetch_array($results))
   		{
 		echo $rows['name'].' '.$rows['mname'].' '.$rows['lname'];

@@ -2,7 +2,7 @@
 	//Start session
 	session_start();
 	
-$con = mysqli_connect("localhost","root","123456");
+$con = mysqli_connect('localhost','root','123456','inventory','3307');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -15,7 +15,7 @@ mysqli_select_db($con,"inventory");
 
 
 
-$result = mysqli_query($result,"SELECT * FROM socode");
+$result = mysqli_query($con,"SELECT * FROM socode");
 while($row = mysqli_fetch_array($result))
   {
         $fefe=$row['code']; 
@@ -23,7 +23,7 @@ while($row = mysqli_fetch_array($result))
   $sasa=$fefe+1;
 
 	
-mysqli_query($result,"UPDATE socode SET code = '$sasa'");
+mysqli_query($con,"UPDATE socode SET code = '$sasa'");
 $fgh='000'.$sasa;						
 $finalcode=date("Y-m-$fgh").'-STO';						
 
