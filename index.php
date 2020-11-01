@@ -28,11 +28,11 @@ body {
 <div style="width:300px; margin-left:40%; margin-top:15%;">
 <form id="form1" name="form1" method="post" action="mainloginexec.php">
   <label>USERNAME :
-  <input type="text" name="username" />
+  <input type="text" name="username" autocomplete="off"/>
   </label>
   <p>
     <label>PASSWORD :
-    <input type="password" name="password" />
+    <input type="password" name="password" autocomplete="off"/>
     </label>
   </p>
   <p>

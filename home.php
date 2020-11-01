@@ -56,13 +56,13 @@ border-width: 3px;
 	<li class="top"><a href="#nogo22" id="services" class="top_link"><span class="down" style="font-size:24px; font-weight:bold;">Master Files</span></a>
 
 		<ul class="sub">
-			<li><a href="products.php"><span style="font-size:18px; font-weight:bold;">Product</span></a></li>
+			<li><a href="products.php"><span style="font-size:18px; font-weight:bold;">물품 리스트</span></a></li>
 			<li><a href="supplier.php"><span style="font-size:18px; font-weight:bold;">Team Members</span></a></li>
-			<li><a href="clients.php"><span style="font-size:18px; font-weight:bold;">Clients</span></a></li>
+			<li><a href="clients.php"><span style="font-size:18px; font-weight:bold;">고객 리스트</span></a></li>
 		</ul>
 	</li>
 
-	<li class="top"><a href="editcustomerprof.php" class="top_link"><span style="font-size:24px; font-weight:bold;">Customer Profile</span></a></li>
+	<li class="top"><a href="editcustomerprof.php" class="top_link"><span style="font-size:24px; font-weight:bold;">회원등록</span></a></li>
 
 	<li class="top"><a href="#" id="shop" class="top_link"><span class="down" style="font-size:24px; font-weight:bold;">Reports</span></a>
 		<ul class="sub">

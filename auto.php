@@ -12,8 +12,6 @@
 <script language="JavaScript" type="text/javascript" src="productnamesearch.js"></script>
 
 
-
-
 <style type="text/css">
 
 
@@ -79,7 +77,7 @@ if (l<=i) // some logic to determine if it is ok to go
     }
     </script>
 	
-<!--=========================================================================================================================-->
+<!--=================================-->
 <script type="text/javascript">
 function showDiv(prefix,chooser) 
 {
@@ -256,16 +254,7 @@ document.mn.textfield.value='check';
  
 </script>
 
-
-
-
-
-
-
-
 <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
-
-
 
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
   <script src="lib/jquery.js" type="text/javascript"></script>
@@ -340,13 +329,7 @@ function getCurrencyCode(strURL)
 	}			
 }
 </script>  
-  
-  
-  
-  
-  
-  
-  
+
  <script language="javascript" type="text/javascript">
  
 function checkNumeric(objName)
@@ -356,19 +339,7 @@ function checkNumeric(objName)
     var lstReplace = lstLetters.replace(/\,/g,'');
   }   
  </script>
-  
-  
-  
-  
-  
 </head>
-
-
-
-
-
-
-
 
 <body onLoad="ShowTime()">
 <div align="center" class="style1">Sales</div>
@@ -380,14 +351,14 @@ function checkNumeric(objName)
 					<legend>Product Details</legend>
 
   <div class="top">
-    <div class="topleft">
-	Enter Product Code Here:<br />
-      <input type="text" id="amots" name="amots" onKeyUp="bleble();" autocomplete="off"/>
+    <div>
+	Enter Product Code Here:
+      <input type="text" id="amots" name="amots" onKeyUp="bleble()"; autocomplete="on"/>
 <div id="layer2" style="margin-right:-30px;"></div>
 	
 	
 	</div>
-    <div class="topright">
+    <div class>
 						<?php
 						/*$q=20;
 						$s=86400;
@@ -400,10 +371,6 @@ function checkNumeric(objName)
 						$da1=date("F j, Y", $tm);
 						echo "Modified time: $da1 <br>";*/
 						?>
-						
-
-
-
 
 						<?php
 							if (isset($_GET['id']))
@@ -419,10 +386,10 @@ function checkNumeric(objName)
 						$member_id = $_GET['id'];
 						
 						
-						$result = mysqli_query($con,"SELECT * FROM productlist WHERE id = $member_id");
+						$result = mysqli_query($con,"SELECT * FROM productlist WHERE pcode = $member_id");
 						
 						$row = mysqli_fetch_array($result);
-						$name=$row["pdesc"];
+						$name=$row["pname"];
 						$qty_left=$row["pleft"];
 						$price=$row["pprice"];
 						$id=$row["id"];
@@ -467,14 +434,15 @@ function checkNumeric(objName)
 						<table width="971" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120"><div align="right">Product Name : </div></td>
-    <td colspan="3"><input name="PNAME" type="text" value="<?php echo $name ?>" size="70" style="border:0px;" readonly/>
+    <td colspan="1"><input name="PNAME" type="text" value="<?php echo $name ?>" size="30" style="border:0px;" readonly/>
       <input name="id" type="hidden" value="<?php echo $id; ?>" readonly/>
       <input name="procode" type="hidden" value="<?php echo $prcoede; ?>" readonly/>
-      <input name="less" type="hidden"/>	  </td>
-    <td width="104"><div align="right">Date : </div></td>
-    <td width="169"><input name="date" type="text" value="<?php echo $da; ?>" size="10" style="border:0px;" />
+	  <input name="less" type="hidden"/>
+	</td>
+    <td width="50"><div align="right">Date : </div></td>
+    <td width="50"><input name="date" type="text" value="<?php echo $da; ?>" size="10" style="border:0px;" />
     <input name="time" type="text" id="txt" size="7" style="border:0px; margin-left:-10px;" readonly/></td>
-    <td width="110" rowspan="3"><input name="submit" type="submit" value="ADD TO CART" style="height: 84px; width: 110px; cursor:pointer;" id="xx" /></td>
+    <td width="110" rowspan="2"><input name="submit" type="submit" value="ADD TO CART" style="height: 40px; width: 110px; cursor:pointer;" id="xx" /></td>
   </tr>
   <tr>
     <td><div align="right">Product Price : </div></td>
@@ -491,7 +459,7 @@ function checkNumeric(objName)
   <tr>
     <td><div align="right">Reciept Code : </div></td>
     <td><input name="CODE" type="text" id="CODE" value="<?php echo $_SESSION['SESS_MEMBER_ID']; ?>" style="border:0px;" readonly="readonly"/></td>
-    <td><div align="right">Sub Total : </div></td>
+    <td><div align="right"> Total : </div></td>
     <td><input name="TOTAL" id="TOTAL" type="text" style="border:0px;" readonly="readonly"/></td>
     <td>&nbsp;</td>
     <td></td>
@@ -505,7 +473,7 @@ function checkNumeric(objName)
   
   </fieldset>
 </form>
-  <fieldset style="border-width: 3px;">
+<fieldset style="border-width: 3px;">
 <legend>List of Orders</legend>
     <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-color:#000000; border-width:thin; font-size:12px;">
       <tr>
@@ -560,7 +528,8 @@ while($row = mysqli_fetch_array($result))
 		echo formatMoney($rr, true);
 		echo '</div></td>';
         echo '<td>';
-		echo '<a href=delete.php?id=' . $row["id"] .'>Remove</a>';
+		echo '<a href=delete.
+		?id=' . $row["id"] .'>Remove</a>';
 		echo '</td>';
       echo '</tr>';
 	  
@@ -570,7 +539,7 @@ mysqli_close($con);
 ?>
     </table>
 
-  </fieldset>
+</fieldset>
 	
 	<form action="preview.php" method="post" name="mn" id="suggestSearch">
 	
@@ -697,17 +666,6 @@ ID Number :   <input type="text" name="cur_code" id="cur_code" >
   </tr>
 </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 <br>

@@ -29,7 +29,7 @@
 		$str = @trim($str);
 		//if(get_magic_quotes_gpc()) {
 			$str = stripslashes($str);
-		//}
+		//}	`	q2w3ed4rf5t43e
 		//return mysqli_real_escape_string($link,$str);
 	}
 	

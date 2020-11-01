@@ -4,7 +4,7 @@ function getXmlHttpRequestObject() {
 	} else if(window.ActiveXObject) {
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	} else {
-		alert("Your Browser Sucks!");
+		alert("Your Browser Sucks");
 	}
 }
 
