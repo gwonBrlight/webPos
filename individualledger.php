@@ -32,7 +32,7 @@ Summary of Credit<br />
     <td width="31%"><div align="center">Amount Purchased </div></td>
   </tr>
   <?php
-  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -77,7 +77,7 @@ while($row = mysqli_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+	  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -108,7 +108,7 @@ Summary of Payment
     <td width="31%"><div align="center">Amount Paid </div></td>
   </tr>
   <?php
-  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -136,7 +136,7 @@ while($row = mysqli_fetch_array($result))
     <td>
 	  <div align="right">
 	    <?php
-	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+	  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

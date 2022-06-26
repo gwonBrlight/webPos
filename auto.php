@@ -1,7 +1,9 @@
-
 <?php
 	require_once('auth.php');
+	//($_SESSION['SESS_MEMBER_ID']);
 ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -13,7 +15,6 @@
 
 
 <style type="text/css">
-
 
 
 a:link {
@@ -52,7 +53,7 @@ if (a!=0) // some logic to determine if it is ok to go
 	
 i=Number(document.mn.cash.value);
 p=Number(document.mn.amount.value);
-l=Number(document.ble.gtotal.value);
+l=Number(document.mn.gtotal.value);
 k=Number(document.mn.payable.value);
 
 if (l<=i) // some logic to determine if it is ok to go
@@ -149,6 +150,22 @@ function displayDiv(prefix,suffix)
 
 <!--===========================================================================================================================-->
 <script language="javascript" type="text/javascript">
+
+function getXmlHttpRequestObject() {
+	if (window.XMLHttpRequest) {
+		return new XMLHttpRequest();
+	} else if(window.ActiveXObject) {
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	} else {
+		alert("Your Browser Sucks!");
+	}
+}
+
+var searchReq = getXmlHttpRequestObject();
+
+//function bleble() {
+//		searchReq.open("GET", 'searchproduct.php', true);	
+//}
 
 function multiply(){
 
@@ -267,9 +284,9 @@ document.mn.textfield.value='check';
       })
     })
   </script>  <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
   
 <script>
@@ -345,153 +362,124 @@ function checkNumeric(objName)
 <div align="center" class="style1">Sales</div>
 <br />
 <a href="home.php"><img src="img/64x64/back.png" alt="back" border="0" /></a>
-<form action="addorder.php" method="post" name="abc"><div class="wraper">
-<fieldset style="border-width: 3px;">
+<form  style = "text-align : left" class="form-inline" method="post">
+<div class="wraper">
+	바코드 입력 : 
+	<input type="text" id="pcode" name="pcode" required="required" autocomplete="off"/><button>검색</button>
+	<td width="30" rowspan="2">
+	</td>
+</div>
+</form>
 
-					<legend>Product Details</legend>
+<form action="addorder.php" method="post" name="abc">
+<div class="wraper">
+	<fieldset style="border-width: 3px;">
+
+	<legend>Product Details</legend>
 
   <div class="top">
-    <div>
-	Enter Product Code Here:
-      <input type="text" id="amots" name="amots" onKeyUp="bleble()"; autocomplete="on"/>
-<div id="layer2" style="margin-right:-30px;"></div>
-	
-	
-	</div>
     <div class>
-						<?php
-						/*$q=20;
-						$s=86400;
-						$r=$q*$s;*/
-						$timestamp=time(); //current timestamp
-						/*$tm=$timestamp+$r; // Will add 2 days to the $timestamp*/
-						$da=date("m/d/Y", $timestamp);
-						/*
-						echo "Current time string: $da <br>";
-						$da1=date("F j, Y", $tm);
-						echo "Modified time: $da1 <br>";*/
-						?>
+			<?php
+			/*$q=20;
+			$s=86400;
+			$r=$q*$s;*/
+			$timestamp=time(); //current timestamp
+			/*$tm=$timestamp+$r; // Will add 2 days to the $timestamp*/
+			$da=date("Y-m-d", $timestamp);
+			/*
+			echo "Current time string: $da <br>";
+			$da1=date("F j, Y", $tm);
+			echo "Modified time: $da1 <br>";*/
+			?>
 
-						<?php
-							if (isset($_GET['id']))
-							{
-						$con = mysqli_connect('localhost','root','123456','inventory','3307');
-						if (!$con)
-						  {
-						  die('Could not connect: ' . mysqli_error($con));
-						  }
+	<?php
+		$mysql_host = 'capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com';
+		$mysql_user = 'Capstone';
+		$mysql_password = '&ZOQtmxhs12&';
+		$mysql_db = 'inventory';
+		
+		$con = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db,'3306');
+		if (!$con)
+		{
+		die('Could not connect: ' . mysqli_error($con));
+		}
+
+		mysqli_select_db($con,"inventory");		
+		$member_id = $GET['id'];
+		$pppppcode = $_POST['pcode'];
+		$pcode =$_REQUEST["pcode"];
+		$sales_on=$_SESSION['LOGIN_MEMBER_ID'];
+		$result = mysqli_query($con,"SELECT * FROM productlist WHERE pcode LIKE '%$pcode%' and sales_on = '$sales_on'");
+							
+		$row = mysqli_fetch_array($result);
+		$name=$row["pname"];
+		$qty_left=$row["pleft"];
+		$price=$row["pprice"];
+		$id=$row["id"];
+		$pcoede=$row["pcode"];	
+		mysqli_close($con);
+		header("location: auto.php");
+	?>
 						
-						mysqli_select_db($con,"inventory");
-						
-						$member_id = $_GET['id'];
-						
-						
-						$result = mysqli_query($con,"SELECT * FROM productlist WHERE pcode = $member_id");
-						
-						$row = mysqli_fetch_array($result);
-						$name=$row["pname"];
-						$qty_left=$row["pleft"];
-						$price=$row["pprice"];
-						$id=$row["id"];
-						$prcoede=$row["pcode"];
-						mysqli_close($con);
-						}
-						
-						?>
-						
-						
-						
-						
-						
-						
-						<?php
-							if (isset($_GET['id2']))
-							{
-						$con = mysqli_connect('localhost','root','123456','inventory','3307');
-						if (!$con)
-						  {
-						  die('Could not connect: ' . mysqli_error($con));
-						  }
-						
-						mysqli_select_db($con,"inventory");
-						
-						$member_id = $_GET['id2'];
-						$result = mysqli_query($con,"SELECT * FROM customer WHERE id = $member_id");
-						
-						$row = mysqli_fetch_array($result);
-						$name3=$row["member_id"];
-						$name4=$row["name"] .' '. $row["mname"] .' '. $row["lname"];
-						mysqli_close($con);
-						}
-						
-						?>
-						
-						
-						
-						
-						
-						
-						<table width="971" border="0" cellpadding="0" cellspacing="0">
+	<table width="971" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="120"><div align="right">Product Name : </div></td>
-    <td colspan="1"><input name="PNAME" type="text" value="<?php echo $name ?>" size="30" style="border:0px;" readonly/>
-      <input name="id" type="hidden" value="<?php echo $id; ?>" readonly/>
-      <input name="procode" type="hidden" value="<?php echo $prcoede; ?>" readonly/>
+    <td width="120"><div align="right"> 상 품 명 : </div></td>
+    <td colspan="1"><input name="PNAME" type="text" value="<?php echo $name; ?>" size="30" style="border:0px;" readonly/>
+      <input name="id" value="<?php echo $id; ?>" type="hidden" readonly/>
+      <input name="procode" type="hidden" value="<?php echo $pcoede; ?>" readonly/>
 	  <input name="less" type="hidden"/>
+	  <input name="sales_on" type="hidden" value="<?php echo $sales_on; ?>" />
 	</td>
-    <td width="50"><div align="right">Date : </div></td>
+    <td width="50"><div align="right"> 현 재 시 간 : </div></td>
     <td width="50"><input name="date" type="text" value="<?php echo $da; ?>" size="10" style="border:0px;" />
     <input name="time" type="text" id="txt" size="7" style="border:0px; margin-left:-10px;" readonly/></td>
-    <td width="110" rowspan="2"><input name="submit" type="submit" value="ADD TO CART" style="height: 40px; width: 110px; cursor:pointer;" id="xx" /></td>
+    <td width="50" rowspan="2"><input name="submit" type="submit" value="추가" style="height: 35px; width: 40px; cursor:pointer;" id="xx" /></td>
   </tr>
   <tr>
-    <td><div align="right">Product Price : </div></td>
-    <td width="165"><span style="margin-left: 0px;">
+    <td><div align="right"> 상 품 판 매 액 : </div></td>
+    <td width="100"><span style="margin-left: 0px;">
       <input name="PPRICE" id="PPRICE" type="text" value="<?php echo $price ?>" style="border:0px;"/>
     </span></td>
-    <td width="119"><div align="right">Quantity : </div></td>
+    <td width="119"><div align="right"> 수 량 : </div></td>
     <td width="184">
       <input name="QTY" id="QTY" type="text" onkeyup="multiply()" onkeypress="return checkIt(event)" />   </td>
-    <td><div align="right">Available Qty: </div></td>
+    <td><div align="right"> 재 고 수 량 : </div></td>
     <td>
       <input name="AQTY" type="text" value="<?php echo $qty_left ?>" size="10" style="border:0px;" readonly="readonly"/>    </td>
   </tr>
   <tr>
-    <td><div align="right">Reciept Code : </div></td>
+    <td><div align="right"> 영 수 증 번 호 : </div></td>
     <td><input name="CODE" type="text" id="CODE" value="<?php echo $_SESSION['SESS_MEMBER_ID']; ?>" style="border:0px;" readonly="readonly"/></td>
-    <td><div align="right"> Total : </div></td>
+    <td><div align="right"> 총 액 : </div></td>
     <td><input name="TOTAL" id="TOTAL" type="text" style="border:0px;" readonly="readonly"/></td>
     <td>&nbsp;</td>
     <td></td>
   </tr>
 </table>
-	
-	
-	
-	
-	
-  
-  </fieldset>
+
+</fieldset>
 </form>
+
+
 <fieldset style="border-width: 3px;">
 <legend>List of Orders</legend>
     <table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-color:#000000; border-width:thin; font-size:12px;">
       <tr>
-	  	<td width="9%"><div align="center"><strong>CODE</strong></div></td>
-        <td width="63%"><div align="center"><strong>PRODUCT</strong></div></td>
-        <td width="8%"><div align="center"><strong>QTY</strong></div></td>
-        <td width="8%"><div align="center"><strong>RETAIL PRICE </strong></div></td>
-        <td width="8%"><div align="center"><strong>AMOUNT</strong></div></td>
-        <td width="4%">&nbsp;</td>
+	  	<td width="12%"><div align="center"><strong>상품번호</strong></div></td>
+        <td width="50%"><div align="center"><strong>상품명</strong></div></td>
+        <td width="8%"><div align="center"><strong>수량</strong></div></td>
+        <td width="15%"><div align="center"><strong>물품 가격</strong></div></td>
+        <td width="15%"><div align="center"><strong>합계</strong></div></td>
       </tr>
 	  <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
   }
 
 mysqli_select_db($con,"inventory");
+require_once('auth.php');
 $f=$_SESSION['SESS_MEMBER_ID'];
 $result = mysqli_query($con,"SELECT * FROM sales where code = '$f'");
 
@@ -528,8 +516,7 @@ while($row = mysqli_fetch_array($result))
 		echo formatMoney($rr, true);
 		echo '</div></td>';
         echo '<td>';
-		echo '<a href=delete.
-		?id=' . $row["id"] .'>Remove</a>';
+		echo '<a href=delete.php ?id=' . $row["id"] .'>Remove</a>';
 		echo '</td>';
       echo '</tr>';
 	  
@@ -546,7 +533,7 @@ mysqli_close($con);
 	<div align="right" style="margin-top:10px;">
 	  Total Retail :
 	    <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -617,7 +604,7 @@ Select Here:
     <td>Customer Name:
 	
 <?php
-	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+	  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

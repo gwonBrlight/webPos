@@ -8,13 +8,13 @@
 	//Validation error flag
 	$errflag = false;
 	
-	$mysql_host = 'localhost';
-    $mysql_user = 'root';
-    $mysql_password = '123456';
+	$mysql_host = 'capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com';
+    $mysql_user = 'Capstone';
+    $mysql_password = '&ZOQtmxhs12&';
 	$mysql_db = 'inventory';
 	
 	//Connect to mysql server
-	$link = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db,'3307');
+	$link = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db,'3306');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysqli_error($link));
 	}
@@ -30,7 +30,7 @@
 		//if(get_magic_quotes_gpc()) {
 			$str = stripslashes($str);
 		//}	`	q2w3ed4rf5t43e
-		//return mysqli_real_escape_string($link,$str);
+		//eturn mysqli_real_escape_string($link,$str);
 	}
 	
 	//Sanitize the POST values
@@ -53,7 +53,8 @@
 			//Login Successful
 			session_regenerate_id();
 			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_MEMBER_ID'] = $member['password'];
+			$_SESSION['SESS_MEMBER_ID'] = $member['username'];
+			$_SESSION['LOGIN_MEMBER_ID'] = $member['id'];
 			session_write_close();
 			header("location: home.php");
 			exit();

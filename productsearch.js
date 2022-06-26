@@ -1,22 +1,22 @@
-function getXmlHttpRequestObject() {
+function XmlHttpRequestObject() {
 	if (window.XMLHttpRequest) {
 		return new XMLHttpRequest();
 	} else if(window.ActiveXObject) {
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	} else {
-		alert("Your Browser Sucks");
+		alert("Your Browser Sucks!");
 	}
 }
 
 //Our XmlHttpRequest object to get the auto suggest
-var searchReq = getXmlHttpRequestObject();
+var searchReq = new XmlHttpRequestObject();
 
 //Called from keyup on the search textbox.
 //Starts the AJAX request.
 function bleble() {
 	if (searchReq.readyState == 4 || searchReq.readyState == 0) {
-		var str = escape(document.getElementById('amots').value);
-		searchReq.open("GET", 'searchSuggest2.php?searchs=' + str, true);
+		var str = escape(document.getElementById('pcode').value);
+		searchReq.openRequest("GET", 'searchSuggest2.php?searchs=' + str, true);
 		searchReq.onreadystatechange = handleSearchSuggest; 
 		searchReq.send(null);
 	}		
@@ -26,7 +26,7 @@ function bleble() {
 function handleSearchSuggest() {
 	if (searchReq.readyState == 4) {
 	        var ss = document.getElementById('layer2');
-		var str1 = document.getElementById('amots');
+		var str1 = document.getElementById('pcode');
 		var curLeft=0;
 		if (str1.offsetParent){
 		    while (str1.offsetParent){
@@ -34,7 +34,7 @@ function handleSearchSuggest() {
 			str1 = str1.offsetParent;
 		    }
 		}
-		var str2 = document.getElementById('amots');
+		var str2 = document.getElementById('pcode');
 		var curTop=20;
 		if (str2.offsetParent){
 		    while (str2.offsetParent){
@@ -70,7 +70,7 @@ function suggestOut(div_value) {
 }
 //Click function
 function setSearch(value) {
-	document.getElementById('amots').value = value;
+	document.getElementById('pcode').value = value;
 	document.getElementById('layer2').innerHTML = '';
 	document.getElementById('layer2').style.visibility = "hidden";
 }

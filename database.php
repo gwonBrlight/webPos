@@ -3,9 +3,9 @@
 //Make the database connection.
 db_connect() or die('Unable to connect to database server!');
 
-function db_connect($server = 'localhost', $username = 'root', $password = '123456', $database = 'inventory', $link = 'db_link') {
+function db_connect($server = 'capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com', $username = 'Capstone', $password = '&ZOQtmxhs12&', $database = 'inventory') {
     global $$link;
-    $$link = mysqli_connect($server, $username, $password);
+    $$link = mysqli_connect($server, $username, $password,$database,3306);
     if ($$link) mysqli_select_db($$link,$database);
     return $$link;
 }
@@ -16,9 +16,9 @@ function db_error($query, $errno, $error) {
 }
 
 //Function to query the database.
-function db_query($query, $link = 'db_link') {
+function db_query($query) {
     global $$link;
-    $result = mysqli_query($query, $$link) or db_error($query, mysqli_errno($con), mysqli_error($con));
+    $result = mysqli_query($$link,$query) or db_error($query, mysqli_errno($con), mysqli_error($con));
     return $result;
 }
 

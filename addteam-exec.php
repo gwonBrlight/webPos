@@ -1,5 +1,12 @@
 <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+
+$mysql_host = 'capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com';
+$mysql_user = 'Capstone';
+$mysql_password = '&ZOQtmxhs12&';
+$mysql_db = 'inventory';
+
+
+$con = mysqli_connect($mysql_host,$mysql_user,$mysql_password,$mysql_db,'3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

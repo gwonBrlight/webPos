@@ -104,9 +104,9 @@ function checkIt(evt) {
 
 <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
 <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
 </head>
 
@@ -167,7 +167,7 @@ function formatMoney($number, $fractional=false) {
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysqli_connect('localhost','root','123456','inventory','3307');
+						$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));
@@ -259,7 +259,7 @@ function formatMoney($number, $fractional=false) {
 		<td width="5%">&nbsp;</td>
       </tr>
 	  <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -313,7 +313,7 @@ mysqli_close($con);
 <tr>
     <td><div align="right"><strong>Total Quantity:</strong></div></td>
     <td><?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -335,7 +335,7 @@ mysqli_close($con);
   <tr>
     <td width="1116"><div align="right"><strong>Total:</strong></div></td>
     <td width="168"><?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -359,7 +359,7 @@ mysqli_close($con);
 <tr>
     <td><div align="right"><strong>Supplier:</strong></div></td>
     <td><?php
-	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+	  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

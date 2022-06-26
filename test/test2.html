@@ -1,0 +1,153 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/annotations.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container" style="width: 1500px; height: 800px; margin: 0 auto"></div> 
+</body>
+</html>
+
+<script>
+var saleData = [
+    [1, 157],
+    [2, 212],
+    [3, 223],
+    [4, 265],
+    [5, 192],
+    [6, 157],
+    [7, 96],
+    [8, 152],
+    [9, 140],
+    [10, 210],
+    [11, 234],
+    [12, 286],
+    [13, 288],
+    [14, 267],
+    [15, 276],
+    [16, 360],
+    [17, 620],
+    [18, 456],
+    [19, 314],
+    [20, 212]
+];
+var forecastData = [
+    [20, 212],
+    [21, 369.4180881],
+    [22, 488.3750561],
+    [23, 473.8041256],
+    [24, 346.1376597],
+    [25, 188.0758462],
+    [26, 163.1511534],
+    [27, 94.43710204],
+    [28, 108.3636171],
+    [29, 194.6338361],
+    [30, 234.0308412],
+    [31, 234.0308412],
+];
+
+// Now create the chart
+Highcharts.chart('container', {
+  title: {
+    text: '다이소'
+  },
+  chart: {
+    type: 'line',
+    zoomType: 'x',
+    panning: true,
+    panKey: 'shift',
+    scrollablePlotArea: {
+      minWidth: 600
+    }
+  },
+
+  credits: {
+    enabled: false
+  },
+
+  annotations: [{
+    draggable: '',
+    labelOptions: {
+      verticalAlign: 'top',
+      y: 15
+    },
+  }, {
+    draggable: '',
+    labelOptions: {
+      shape: 'connector',
+      align: 'right',
+      justify: false,
+      crop: true,
+      style: {
+        fontSize: '0.8em',
+        textOutline: '1px white'
+      }
+    },
+  }],
+
+  xAxis: {
+    labels: {
+      format: ''
+    },
+    minRange: 1,
+    title: {
+      text: 'Date'
+    },
+    accessibility: {
+      rangeDescription: 'Range: 0 to 31.'
+    }
+  },
+
+  yAxis: {
+    startOnTick: true,
+    endOnTick: false,
+    maxPadding: 0.1,
+    title: {
+      text: 'sale amount'
+    },
+    labels: {
+      format: '{value}'
+    },
+    accessibility: {
+      description: 'Elevation',
+      //rangeDescription: 'Range: 0 to 1,553 meters'
+    }
+  },
+
+  tooltip: {
+    crosshairs: true,
+    headerFormat: 'Date: May {point.x} <br>',
+    pointFormat: 'sales amount : {point.y}',
+    shared: true
+  },
+  legend: {
+    enabled: true
+  },
+
+  series: [{
+    data: saleData,
+    color: Highcharts.getOptions().colors[2],
+    fillOpacity: 0.5,
+    name: 'saleData',
+    marker: {
+      enabled: false
+    },
+},
+{
+    data: forecastData,
+    color: Highcharts.getOptions().colors[4],
+    fillOpacity: 0.5,
+    name: 'forecastData',
+    marker: {
+      enabled: false
+    },
+    threshold: null
+  }]
+});
+
+</script>

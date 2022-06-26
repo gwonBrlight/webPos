@@ -1,6 +1,6 @@
 
 <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -42,7 +42,7 @@ VALUES ('$mn', '$fop', '$creditcode', '$creditpayable')");
 mysqli_close($con);
 ?>
 <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -87,7 +87,7 @@ mysqli_close($con);
     <td><div align="center">Balance</div></td>
   </tr>
   <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

@@ -1,39 +1,22 @@
 <?php
 include('config.php');
-if($_POST)
-{
-
-$q=$_POST['searchword'];
-
-$sql_res=mysqli_query($sql_res,"select * from productlist where pcode like '%$q%' or pcode like '%$q%'");
-while($row=mysqli_fetch_array($sql_res))
-{
-$fname=$row['pcode'];
-
-$id=$row['id'];
-
-$re_fname='<b>'.$q.'</b>';
-
-
-$final_fname = str_ireplace($q, $re_fname, $fname);
-
-
-
-?>
-<div class="display_box" align="left">
-
-<?php echo '<a href=stockin.php?id=' . $id . '>'.$final_fname; ?>
-
-
-
-<?php
-}
-
-}
-else
-{
-
-}
-
-
-?>
+	$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
+	if (!$con)
+	{
+	  die('Could not connect: ' . mysqli_error($con));
+	}
+						
+	mysqli_select_db($con,"inventory");
+						
+    $member_id = $GET['id'];
+    $pppppcode = $_POST['pcode'];
+	$result = mysqli_query($con,"SELECT * FROM productlist WHERE pcode = $pppppcode");
+						
+    $row = mysqli_fetch_array($result);
+    $name=$row["pname"];
+	$qty_left=$row["pleft"];
+	$price=$row["pprice"];
+	$id=$row["id"];
+	$pcoede=$row["pcode"];
+	mysqli_close($con);
+	?>

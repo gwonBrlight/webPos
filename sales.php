@@ -10,8 +10,6 @@
 <link rel="stylesheet" type="text/css" href="tcal.css" />
 <script type="text/javascript" src="tcal.js"></script> 
 
-
-
 <script type="text/javascript">
 function showDiv(prefix,chooser) 
 {
@@ -23,7 +21,6 @@ function showDiv(prefix,chooser)
  
 		var selectedOption = (chooser.options[chooser.selectedIndex].value);
 		
- 
 		if(selectedOption == "1")
 		{
 			displayDiv(prefix,"1");
@@ -32,10 +29,6 @@ function showDiv(prefix,chooser)
 		{
 			displayDiv(prefix,"2");
 		}
-		
-		
-		
- 
 }
  
 function displayDiv(prefix,suffix) 
@@ -48,9 +41,9 @@ function displayDiv(prefix,suffix)
 
 
   <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
 </head>
 

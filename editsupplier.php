@@ -1,7 +1,7 @@
 						<?php
 							if (isset($_GET['id']))
 							{
-						$con = mysqli_connect('localhost','root','123456','inventory','3307');
+						$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 						if (!$con)
 						  {
 						  die('Could not connect: ' . mysqli_error($con));
@@ -26,14 +26,14 @@
 
 
 <form action="savesupplier.php" method="post">
-Company Name:<br />
+이름:<br />
 <input name="a" type="text" size="70" value="<?php echo $company_name; ?>" /><br />
-Contact Name:<br />
+직급:<br />
 <input name="b" type="text" size="70" value="<?php echo $contact_name; ?>" />
 <br />
-Address:<br />
+주소:<br />
 <input name="c" type="text" size="70" value="<?php echo $address; ?>" /><br />
-Contact Number:<br />
+휴대폰번호:<br />
 <input name="d" type="text" size="70" value="<?php echo $contactno; ?>" /><br />
 <input name="submit" type="submit" value="save">
 </form>

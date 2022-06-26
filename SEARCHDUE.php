@@ -11,9 +11,9 @@
 	<script type="text/javascript" src="tcal.js"></script> 
 	
 	  <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
 </head>
 

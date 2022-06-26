@@ -1,8 +1,7 @@
 <?php
 				  if (isset($_GET['id']))
 	{
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
-if (!$con)
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
   {
   die('Could not connect: ' . mysqli_error($con));
   }

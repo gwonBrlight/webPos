@@ -1,6 +1,6 @@
 
 <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -51,16 +51,16 @@ VALUES ('$cus_name', '$address', '$tel', '$off', '$mobile', '$hostess', '$email'
 mysqli_close($con);
 ?>
 <style type="text/css">
-<!--
+
 .style1 {
 	font-size: 36px;
 	font-weight: bold;
 }
 .style3 {font-size: 12px}
--->
+
 </style>
 <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -120,7 +120,7 @@ mysqli_close($con);
         <td width="13%"><div align="center"><strong>AMOUNT</strong></div></td>
       </tr>
 	  <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -161,7 +161,7 @@ mysqli_close($con);
 	
 	<?php
 		
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -186,7 +186,7 @@ mysqli_close($con);
     <td>&nbsp;
 	
 	<?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

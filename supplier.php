@@ -26,9 +26,9 @@
     })
   </script>
    <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
   </head>
 <body id="index">
@@ -37,24 +37,24 @@
   <a href="home.php"><img src="img/64x64/back.png" alt="back" border="0" /></a>
 <p align="center"><a rel="facebox" href="addsupplier.php">Add Team Members </a> </p>
     <div id="pagewrap">
-<div id="search">
+    <div id="search">
         <label for="filter">Filter</label> <input type="text" name="filter" value="" id="filter" />
       </div>
 	 <div id="body">
 <table cellpadding="1" cellspacing="1" id="resultTable">
           <thead>
-            <tr bgcolor="#33FF00" style="margin-bottom:10px;">
-              <th>Team Member</th>
-              <th>Member Number </th>
-			  <th>Birth Day</th>
-			  <th>Address</th>
-              <th>Contact Number</th>
-              <th>Action</th>
+            <tr bgcolor="#707070" style="margin-bottom:10px;color=#000000">
+              <th>이름</th>
+              <th>직급</th>
+			        <th>생년월일</th>
+			        <th>주소</th>
+              <th>휴대폰번호</th>
+              <th>수정</th>
             </tr>
           </thead>
           <tbody>
           <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
+$con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));
@@ -84,6 +84,3 @@ mysqli_close($con);
     </div>
 </body>
 </html>
-
-
-

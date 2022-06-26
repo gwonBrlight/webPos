@@ -82,7 +82,7 @@ function checkNumeric(objName)
 <div style="width: 684px; height: 281px;">
 <form id="suggestSearch" action="individualledger.php" method="get" style="width: 358px; margin-left: 171px; margin-top: 129px;">
 <?php
-	  $con = mysqli_connect('localhost','root','123456','inventory','3307');
+	  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
 if (!$con)
   {
   die('Could not connect: ' . mysqli_error($con));

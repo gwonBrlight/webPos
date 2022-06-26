@@ -1,5 +1,6 @@
 <?php
-	require_once('auth.php');
+  require_once('auth.php');
+  $sales_on=$_SESSION['LOGIN_MEMBER_ID'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -27,9 +28,9 @@
   </script>
   
    <style type="text/css">
-<!--
+
 .style1 {font-size: 36px}
--->
+
   </style>
   </head>
   <body id="index">
@@ -43,44 +44,48 @@
       </div>
 	 <div id="body">
 <table cellpadding="1" cellspacing="1" id="resultTable">
-          <thead>
-            <tr bgcolor="#fceecf" style="margin-bottom:10px;">
-              <th>상품코드</th>
-              <th>상품이름</th>
-              <th>상품설명</th>
-              <th>판매</th>
-			        <th>재고</th>
-              <th>가격</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-          <?php
-$con = mysqli_connect('localhost','root','123456','inventory','3307');
-if (!$con)
-  {
-  die('Could not connect: ' . mysqli_error($con));
-  }
+    <thead>
+      <tr bgcolor="#fceecf" style="margin-bottom:10px;">
+      <th>상품코드</th>
+        <th>분류</th>
+        <th>상품이름</th>
+        <th>상품설명</th>
+        <th>등록키워드</th>
+        <th>판매</th>
+        <th>재고</th>
+        <th>가격</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+  $sales_on=$_SESSION['LOGIN_MEMBER_ID'];
+  $con = mysqli_connect('capstone.cx8j7fkiwfmt.ap-northeast-2.rds.amazonaws.com','Capstone','&ZOQtmxhs12&','inventory','3306');
+  if (!$con)
+    {
+    die('Could not connect: ' . mysqli_error($con));
+    }
 
-mysqli_select_db($con,"inventory");
+  mysqli_select_db($con,"inventory");
+  $result = mysqli_query($con,"SELECT * FROM productlist WHERE sales_on = '$sales_on'");
 
-$result = mysqli_query($con,"SELECT * FROM productlist");
-
-while($row = mysqli_fetch_array($result))
+  while($row = mysqli_fetch_array($result))
   {
     echo '<tr>';
-      echo '<td>'.$row['pcode'].'</td>';
-      echo '<td>'.$row['pname'].'</td>';
-      echo '<td>'.$row['pdesc'].'</td>';
-      echo '<td><div align="center">'.$row['psold'].'</div></td>';
-      echo '<td><div align="center">'.$row['pleft'].'</div></td>';
-      echo '<td><div align="center">'.$row['pprice'].'</div></td>';
-      echo '<td><div align="center">'.'<a rel="facebox" href=editproduct.php?pcode=' . $row['pcode'] .'>수정</a>'.'|'.'<a rel="facebox" href=deletep.php?pcode=' . $row['pcode'] .'>삭제</a>'.' </div></td>';
+    echo '<td><div align="center">'.$row['pcode'].'</td>';
+    echo '<td><div align="center">'.$row['ptype'].'</td>';
+    echo '<td>'.$row['pname'].'</td>';
+    echo '<td>'.mb_strimwidth($row['pdesc'],'0','40','...','utf-8').'</td>';
+    echo '<td>'.$row['keyword'].'</td>';
+    echo '<td><div align="center">'.$row['psold'].'</div></td>';
+    echo '<td><div align="center">'.$row['pleft'].'</div></td>';
+    echo '<td><div align="center">'.$row['pprice'].'</div></td>';
+    echo '<td><div align="center">'.'<a rel="facebox" href=editproduct.php?pcode=' . $row['pcode'] .'>수정</a>'.'|'.'<a rel="facebox" href=deletep.php?pcode=' . $row['pcode'] .'>삭제</a>'.' </div></td>';
     echo '</tr>';
   }
+    mysqli_close($con);
+?>
 
-mysqli_close($con);
-?> 
           </tbody>
        </table>
       </div>

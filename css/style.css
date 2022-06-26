@@ -1,7 +1,7 @@
 body, html {
-	background-color:#000000;
+	background-color:#ffffff;
 	font: normal normal normal 1em/1.5em Helvetica, sans-serif;
-	color:#ff00ea;
+	color:#424242;
 }
 pre { font-family: monospace;}
 
@@ -38,7 +38,7 @@ pre { font-family: monospace;}
 					color:#000000;
 				}
 											th.sortable {
-												color: #666;
+												color: rgb(0, 0, 0);
 												cursor: pointer;
 												text-decoration: underline;
 											}
@@ -49,8 +49,8 @@ pre { font-family: monospace;}
 												background-color: white;
 											}
 											td.odd {
-												background-color: #666;
-												color: white;
+												background-color: white;
+												color: black;
 											}
 											
 											td.hovered {
